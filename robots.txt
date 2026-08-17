@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Block pages that are not meant to be publicly indexed
+Disallow: /186 Gaiming -DOC/
+Disallow: /contact_process.php
+Disallow: /blog.html
+Disallow: /contact.html
+Disallow: /fighter.html
+Disallow: /single-blog.html
+Disallow: /team.html
+
+# Optional: block hidden/private drafts if added later
+# Disallow: /private/
+# Disallow: /admin/
+
+Sitemap: https://www.infiniteproleague.com/sitemap.xml
