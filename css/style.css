@@ -3649,6 +3649,90 @@ ul {
 
 /************about_us css start***************/
 /* line 2, ../../01 cl html template/03_jun 2019/186_Gaiming_html/sass/_about_us.scss */
+.campus_next_section {
+  padding: 30px 0 0;
+  background: #050505;
+}
+
+.campus_next_box {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 0;
+}
+
+.campus_next_image {
+  width: 210px;
+  min-width: 210px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+}
+
+.campus_next_image img {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  display: block;
+}
+
+.campus_next_content {
+  flex: 1;
+}
+
+.campus_next_content h3 {
+  margin: 0 0 10px;
+  color: #ff7b00;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.campus_next_content h4 {
+  margin: 0 0 12px;
+  color: #ffffff;
+  font-size: 34px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.campus_next_content p {
+  margin: 0 0 12px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+.campus_next_tagline {
+  font-weight: 700;
+  color: #ffffff !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.campus_next_content .btn_1 {
+  margin-top: 8px;
+}
+
+@media (max-width: 767px) {
+  .campus_next_box {
+    flex-direction: column;
+    text-align: center;
+    padding: 0;
+  }
+
+  .campus_next_image {
+    width: 170px;
+    min-width: 170px;
+  }
+
+  .campus_next_content h4 {
+    font-size: 26px;
+  }
+}
+
 .about_us {
   position: relative;
   z-index: 99;
@@ -6627,18 +6711,37 @@ body {
   background: #000;
 }
 
+.partner_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
 .partner_placeholder {
+  display: flex;
   justify-content: center;
+  align-items: center;
+  padding: 20px 14px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: rgba(255, 255, 255, 0.04);
 }
 
-.partner_placeholder span {
+.partner_placeholder img {
+  display: block;
+  margin: 0 auto;
+}
+
+.partner_label {
+  display: block;
+  margin-top: 14px;
   color: #bebebe;
   font-family: "Poppins", sans-serif;
   font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: center;
 }
 
 .infinite_rankings {
