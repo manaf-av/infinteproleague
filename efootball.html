@@ -31,9 +31,47 @@
             overflow: hidden;
         }
 
+        .logo_nav {
+            height: 82px;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            background: #07080b;
+        }
+
+        .logo_nav img {
+            display: block;
+            width: auto;
+            max-width: 180px;
+            max-height: 54px;
+        }
+
+        .partner_badge {
+            margin-left: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 700;
+            line-height: 1.1;
+            text-align: center;
+        }
+
+        .partner_badge img {
+            width: auto;
+            max-width: 72px;
+            height: 42px;
+            max-height: 42px;
+            object-fit: contain;
+            margin-bottom: 2px;
+        }
+
         .form_page {
             width: 100%;
-            height: 100vh;
+            height: calc(100vh - 82px);
             background: var(--bg);
         }
 
@@ -48,14 +86,34 @@
         }
 
         @media (max-width: 767px) {
+            .logo_nav {
+                height: 68px;
+                padding: 0 16px;
+            }
+
+            .partner_badge img {
+                max-width: 60px;
+                height: 34px;
+                max-height: 34px;
+            }
+
             .form_page {
-                height: 100dvh;
+                height: calc(100dvh - 68px);
             }
         }
     </style>
 </head>
 
 <body>
+    <header class="logo_nav">
+        <a href="index.html" aria-label="Infinite Pro League home">
+            <img src="img/logo.png" alt="Infinite Pro League logo">
+        </a>
+        <div class="partner_badge">
+            <img src="img/Partners/rglogo.png" alt="Revolution Games logo">
+            <span>Title Partner</span>
+        </div>
+    </header>
     <div class="form_page">
         <iframe class="form_frame"
             src="https://docs.google.com/forms/d/e/1FAIpQLSdzd59m8kadbyD6pIchrkU2lR0mMc14uF_RYRnK7STsoDQOGA/viewform?embedded=true"
