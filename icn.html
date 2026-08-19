@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Infinite Campus Next | Infinite Pro League</title>
+    <link rel="icon" href="img/iplfavicon.png">
+    <style>
+        :root {
+            --bg: #07080b;
+            --panel: #101319;
+            --text: #ffffff;
+            --muted: #cfcfcf;
+            --accent: #ff5a1f;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            width: 100%;
+            min-height: 100%;
+            background: var(--bg);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        .logo_nav {
+            height: 82px;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            background: #07080b;
+        }
+
+        .logo_nav img {
+            display: block;
+            width: auto;
+            max-width: 180px;
+            max-height: 54px;
+        }
+
+        .partner_badge {
+            margin-left: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 700;
+            line-height: 1.1;
+            text-align: center;
+        }
+
+        .partner_badge img {
+            width: auto;
+            max-width: 72px;
+            height: 42px;
+            max-height: 42px;
+            object-fit: contain;
+            margin-bottom: 2px;
+        }
+
+        .form_page {
+            width: 100%;
+            height: calc(100vh - 82px);
+            background: var(--bg);
+        }
+
+        .form_frame {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            margin: 0;
+            padding: 0;
+            background: #ffffff;
+        }
+
+        @media (max-width: 767px) {
+            .logo_nav {
+                height: 68px;
+                padding: 0 16px;
+            }
+
+            .partner_badge img {
+                max-width: 60px;
+                height: 34px;
+                max-height: 34px;
+            }
+
+            .form_page {
+                height: calc(100dvh - 68px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="logo_nav">
+        <a href="index.html" aria-label="Infinite Pro League home">
+            <img src="img/logo.png" alt="Infinite Pro League logo">
+        </a>
+        <div class="partner_badge">
+            <img src="img/Partners/rglogo.png" alt="Revolution Games logo">
+            <span>Title Partner</span>
+        </div>
+    </header>
+    <div class="form_page">
+        <iframe class="form_frame"
+            src="https://docs.google.com/forms/d/e/1FAIpQLScWrwx--cs-q2bUwPHhSv1WsddXGOuaTTkgP_H9dTGF5ov40A/viewform?embedded=true"
+            title="Infinite Campus Next Registration Form"
+            loading="lazy"
+            allowfullscreen>
+            Loading…
+        </iframe>
+    </div>
+</body>
+
+</html>
