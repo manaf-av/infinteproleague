@@ -2,216 +2,283 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Launch Tour Registration</title>
-    <link rel="icon" href="img/iplfavicon.png">
-    <!-- Bootstrap CSS -->
+    <meta name="description"
+        content="Infinite Pro League is an India-based esports league focused on discovering talent and building structured competition.">
+    <title>Infinite Pro League | India's Competitive Esports Ecosystem</title>
+    <link rel="icon" href="img/iplfavicon.png" type="image/svg+xml">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/all.css">
-    <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        body {
-            background: #07080b;
-            color: #fff;
-        }
-
-        .register_page {
-            padding: 120px 0;
-            background: #07080b;
-        }
-
-        .register_intro {
-            margin-bottom: 50px;
-            text-align: center;
-        }
-
-        .register_intro h2 {
-            color: #fff;
-            margin-bottom: 12px;
-            font-size: 42px;
-            font-weight: 700;
-        }
-
-        .register_intro p {
-            color: #b7b7b7;
-            max-width: 680px;
-            margin: 0 auto;
-        }
-
-        .game_card {
-            height: 100%;
-            padding: 30px 28px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-            border-radius: 18px;
-            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.25);
-            text-align: center;
-        }
-
-        .game_tag {
-            display: inline-block;
-            padding: 8px 16px;
-            border-radius: 999px;
-            background: rgba(138, 92, 246, 0.18);
-            border: 1px solid rgba(138, 92, 246, 0.35);
-            color: #d7c9ff;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 18px;
-        }
-
-        .game_image_wrap {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 18px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            overflow: hidden;
-        }
-
-        .game_image_wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .game_card p {
-            color: #c4c4c4;
-            line-height: 1.8;
-            margin-bottom: 24px;
-        }
-
-        .game_facts {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 24px;
-        }
-
-        .game_facts li {
-            color: #eaeaea;
-            margin-bottom: 8px;
-            font-size: 15px;
-        }
-
-        .btn_1 {
-            display: inline-block;
-            width: 100%;
-            padding: 14px 20px;
-            border-radius: 8px;
-            background: linear-gradient(90deg, #d91a1a, #ff6a00);
-            color: #fff;
-            font-weight: 700;
-            border: none;
-            text-decoration: none;
-            transition: 0.3s ease;
-        }
-
-        .btn_1:hover {
-            transform: translateY(-2px);
-            color: #fff;
-            box-shadow: 0 12px 22px rgba(217, 26, 26, 0.35);
-        }
-    </style>
 </head>
-
 <body>
-    <header class="main_menu single_page_menu">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-12">
-                    <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo"> </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="menu_icon"><i class="fas fa-bars"></i></span>
-                        </button>
+    <div class="body_bg">
+        <header class="main_menu single_page_menu">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">
+                        <nav class="navbar navbar-expand-lg navbar-light">
+                            <a class="navbar-brand infinite-brand" href="#home">
+                                <img src="img/Logo.svg" alt="Infinite Pro League logo">
+                            </a>
 
-                        <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="index.html">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="register.html">Register</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
+                            <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#home">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#rankings">Rankings</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#partners">Partners</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#contact">Contact</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="register.html" class="btn_1 header_register">Register</a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="menu_icon"><i class="fas fa-bars"></i></span>
+                            </button>
+                        </nav>
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <section class="breadcrumb breadcrumb_bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb_iner text-center">
-                        <div class="breadcrumb_iner_item">
-                            <h2>Launch Tour Registration</h2>
+        <main>
+            <section class="banner_part infinite_hero" id="home">
+                <div class="container">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-lg-6 col-md-10 order-2 order-lg-1">
+                            <div class="banner_text">
+                                <div class="banner_text_iner">
+                                    <span class="hero_kicker">Upcoming Event</span>
+                                    <h1><img src="img/Partners/rglogo.png" alt="RG Logo" width="140" height="100"> <br> Infinite Pro League Launch Tour - Kochi</h1>
+                                    <p>The road to Season 1 starts here.
+
+The Infinite Pro League Launch Tour arrives in Kochi at TechCon26, bringing competitive gaming, players, and communities together with for the beginning of a journey that will lead to Infinite Pro League Season 1. Compete for an exciting <span style="font-size: 1.3em;"><strong>₹75,000</strong></span> launch prizepool.</p>
+                                    <div class="hero_actions" id="register">
+                                        <a href="register.html" class="btn_1">Register for Launch Tour</a>
+                                        <a href="#about" class="btn_2">Learn More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-10 order-1 order-lg-2 hero_media_col">
+                            <div class="hero_media">
+                                <img src="img/ipllt.png" alt="Infinite Pro League illustration" class="hero_side_image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="campus_next_section">
+                <div class="container">
+                    <div class="campus_next_box">
+                        <div class="campus_next_image">
+                            <img src="img/ICN.svg" alt="Infinite Campus Next">
+                        </div>
+                        <div class="campus_next_content">
+                            <h3>INFINITE CAMPUS NEXT</h3>
+                            <h4>Where Students Meet the Esports &amp; Gaming Industry.</h4>
+                            <p>A practical industry program connecting students with real-world opportunities in marketing, content, events, management and esports.</p>
+                            <p class="campus_next_tagline">Learn. Work. Build.</p>
+                            <a href="icn.html" class="btn_1">Apply For Campus Next</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about_us section_padding" id="about">
+                <div class="container">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-md-5 col-lg-6 col-xl-6">
+                            <div class="learning_img">
+                                <img src="img/ipls1.png" alt="Competitive esports player illustration">
+                            </div>
+                        </div>
+                        <div class="col-md-7 col-lg-6 col-xl-5">
+                            <div class="about_us_text">
+                                <h2>About Infinite Pro League</h2>
+                                <p>Infinite Pro League (Infinite PL) is a competitive esports ecosystem built to
+                                    discover, develop, and recognize the next generation of gaming talent. Through
+                                    professionally organized tournaments, community-driven events, and the Infinite
+                                    Rankings system, we provide players with a clear pathway to compete, improve, and
+                                    earn recognition.</p> <br>
+                                <p>From grassroots competitions to premier championships, Infinite Pro League is
+                                    committed to building a sustainable and inclusive esports ecosystem where every match
+                                    matters and every player has the opportunity to rise.</p>
+                                <a href="#rankings" class="btn_1">Explore Rankings</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="client_logo infinite_partners" id="partners">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="section_tittle text-center">
+                                <h2>Partners &amp; Affiliations</h2>
+                                <p>Official partners, sponsors, and affiliations will be announced here.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-lg-12">
+                            <div class="client_logo_slider owl-carousel d-flex justify-content-between">
+                                <div class="partner_item">
+                                    <div class="single_client_logo partner_placeholder">
+                                        <img src="img/partners/rglogo.png" alt="Revolution Games" />
+                                    </div>
+                                    <span class="partner_label">Title Partner</span>
+                                </div>
+                                <div class="partner_item">
+                                    <div class="single_client_logo partner_placeholder">
+                                        <img src="img/partners/esfi.png" alt="Esports Federation of India" />
+                                    </div>
+                                    <span class="partner_label">Federation Partner</span>
+                                </div>
+                                <div class="partner_item">
+                                    <div class="single_client_logo partner_placeholder">
+                                        <img src="img/partners/esak.png" alt="Esports Association Of Kerala" />
+                                    </div>
+                                    <span class="partner_label">Association Partner</span>
+                                </div>
+                                <div class="partner_item">
+                                    <div class="single_client_logo partner_placeholder">
+                                        <img src="img/partners/techcon.png" alt="Media" />
+                                    </div>
+                                    <span class="partner_label">Event Partner</span>
+                                </div>
+                                <!-- <div class="partner_item">
+                                    <div class="single_client_logo partner_placeholder">
+                                        <img src="img/partners/p5.png" alt="Platform" />
+                                    </div>
+                                    <span class="partner_label">Platform 05</span>
+                                </div>
+                                <div class="partner_item">
+                                    <div class="single_client_logo partner_placeholder">
+                                        <img src="img/partners/p6.png" alt="Community" />
+                                    </div>
+                                    <span class="partner_label">Community 06</span>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="infinite_rankings section_padding" id="rankings">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 text-center">
+                            <div class="section_tittle">
+                                <span class="coming_soon_badge">Coming Soon</span>
+                                <img src="img/infrankings.svg" class="rankings_logo"
+                                    alt="Infinite Rankings official logo">
+                            </div>
+                            <p>Infinite Rankings is the official ranking system of Infinite Pro League. It will track
+                                competitive performance, highlight rising talent, and give players a structured path to
+                                prove themselves across official events.</p>
+                            <a href="https://www.instagram.com/infiniteproleague" class="btn_1">Get Ranking Updates</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer_part" id="contact">
+            <div class="footer_top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="single_footer_part">
+                                <a href="#home" class="footer_logo_iner infinite-footer-logo">
+                                    <img src="img/Logo.svg" alt="Infinite Pro League logo">
+                                </a>
+                                <p>Where Players Become Athletes</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="single_footer_part">
+                                <h4>Contact</h4>
+                                <p>Email : infiniteproleague@gmail.com</p>
+                                <p>Office : GREAT INDIA, Ground Floor, Kollakadavu, Chengannur, Alappuzha District, Kerala, India</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="single_footer_part">
+                                <h4>Links</h4>
+                                <ul class="list-unstyled">
+                                    <li><a href="#rankings">Infinite Rankings</a></li>
+                                    <li><a href="#partners">Partners</a></li>
+                                    <li><a href="#contact">Contact</a></li>
+                                    <li><a href="#">League Rulebook</a></li>
+                                    <li><a href="#">Terms &amp; Conditions</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="single_footer_part">
+                                <h4>Social</h4>
+                                <div class="social_icon">
+                                    <ul class="list-unstyled">
+                                        <li><a href="https://www.instagram.com/infiniteproleague" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                                        <li><a href="https://www.youtube.com/@InfiniteProLeague" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
+                                        <li><a href="https://discord.gg/BbFzFpRrur" aria-label="Discord"><i class="fab fa-discord"></i></a></li>
+                                        <!-- <li><a href="#" aria-label="X"><i class="fab fa-twitter"></i></a></li> -->
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="register_page">
-        <div class="container">REGISTER NOW.v class="register_intro">
-                <h2>Choose Your Game</h2>
-                <p>Register for the Infinite Pro League Launch Tour and secure your spot in the opening action at TechCon26.</p>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6 col-md-6 mb-4">
-                    <div class="game_card">
-                        <span class="game_tag">Revo Racers</span>
-                        <div class="game_image_wrap">
-                            <img src="img/titles/rrcov.png" alt="Game 1">
+            <div class="copygight_text">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-8">
+                            <div class="copyright_text">
+                                <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> Infinite
+                                    Pro League. All rights reserved.</p>
+                            </div>
                         </div>
-                        <p>High-speed racing action where precision, overtakes, and split-second decisions decide who takes the lead.</p>
-                        <ul class="game_facts">
-                            <li>Device: Mobile & PC</li>
-                            <li>Format: Solo</li>
-                            <li>Skill Level: Open for all</li>
-                            <li>Registration Deadline: TBD</li>
-                        </ul>
-                        <a href="#" class="btn_1">Registration Opens soon</a>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-md-6 mb-4">
-                    <div class="game_card">
-                        <span class="game_tag">e Football Mobile</span>
-                        <div class="game_image_wrap">
-                            <img src="img/titles/efcov.webp" alt="Game 2">
+                        <div class="col-lg-4">
+                            <div class="footer_icon social_icon">
+                                <ul class="list-unstyled">
+                                    <li><a href="https://www.instagram.com/infiniteproleague" class="single_social_icon" aria-label="Instagram"><i
+                                                class="fab fa-instagram"></i></a></li>
+                                    <li><a href="https://www.youtube.com/@InfiniteProLeague" class="single_social_icon" aria-label="YouTube"><i
+                                                class="fab fa-youtube"></i></a></li>
+                                    <li><a href="https://discord.gg/BbFzFpRrur" class="single_social_icon" aria-label="Discord"><i
+                                                class="fab fa-discord"></i></a></li>
+                                    <!-- <li><a href="#" class="single_social_icon" aria-label="X"><i
+                                                class="fab fa-twitter"></i></a></li> -->
+                                </ul>
+                            </div>
                         </div>
-                        <p>Competitive football action where skill, tactics, and finishing ability separate the contenders from the rest.</p>
-                        <ul class="game_facts">
-                            <li>Categories: Open & Women</li>
-                            <li>Grand LAN Slots: 20 Open + 4 Women</li>
-                            <li>Device: Mobile</li>
-                            <li>Format: 1v1 Matchup</li>
-                            <li>Skill Level: Open For all</li>
-                            <li>Registration Deadline: TBD</li>
-                        </ul>
-                        <a href="#" class="btn_1">Registration Opens soon</a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </footer>
+    </div>
+
+    <script src="js/jquery-1.12.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/custom.js"></script>
 </body>
 
 </html>
