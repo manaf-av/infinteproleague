@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Registration | Infinite Pro League</title>
+    <link rel="icon" href="img/iplfavicon.png">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --registration-bg: #07080b;
+            --registration-panel: #11131a;
+            --registration-line: rgba(255, 255, 255, 0.12);
+            --registration-muted: #b8bbc5;
+            --registration-red: #ff1717;
+            --registration-orange: #ff6b00;
+        }
+
+        body {
+            background: var(--registration-bg);
+            color: #fff;
+        }
+
+        .registration_nav {
+            background: #07080b;
+            border-bottom: 1px solid var(--registration-line);
+        }
+
+        .registration_nav .navbar {
+            min-height: 82px;
+        }
+
+        .registration_nav .navbar-brand img {
+            width: auto;
+            max-width: 180px;
+            max-height: 54px;
+        }
+
+        .registration_nav .nav-link {
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .registration_nav .nav-link:hover {
+            color: #ff5b2d;
+        }
+
+        .registration_menu {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .registration_menu .navbar-nav {
+            flex-direction: row;
+        }
+
+        .registration_partners {
+            padding: 34px 0 30px;
+            border-bottom: 1px solid var(--registration-line);
+            background: #000;
+        }
+
+        .registration_partners h2 {
+            margin-bottom: 22px;
+            color: #fff;
+            font-size: 21px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .registration_partners .single_client_logo {
+            min-height: 82px;
+        }
+
+        .registration_partners .single_client_logo img {
+            max-width: 118px;
+            max-height: 54px;
+            object-fit: contain;
+        }
+
+        .registration_main {
+            padding: 72px 0 84px;
+            background: radial-gradient(circle at 80% 10%, rgba(255, 83, 22, 0.18), transparent 34%), #07080b;
+        }
+
+        .registration_hero {
+            max-width: 820px;
+            margin: 0 auto 54px;
+            text-align: center;
+        }
+
+        .registration_hero img {
+            width: min(100%, 430px);
+            max-height: 150px;
+            object-fit: contain;
+            margin-bottom: 24px;
+        }
+
+        .registration_eyebrow {
+            display: block;
+            color: #ff7542;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .registration_hero h1 {
+            margin-bottom: 16px;
+            color: #fff;
+            font-size: clamp(34px, 5vw, 64px);
+            line-height: 1.08;
+            font-weight: 700;
+        }
+
+        .registration_hero p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--registration-muted);
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .registration_section_title {
+            margin: 0 0 22px;
+            color: #fff;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        .link_card,
+        .competition_card {
+            height: 100%;
+            padding: 28px;
+            border: 1px solid var(--registration-line);
+            border-radius: 10px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025));
+        }
+
+        .link_card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 220px;
+        }
+
+        .link_card_icon {
+            color: #ff6b2d;
+            font-size: 28px;
+            margin-bottom: 18px;
+        }
+
+        .link_card h3,
+        .competition_card h3 {
+            margin-bottom: 10px;
+            color: #fff;
+            font-size: 19px;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+        }
+
+        .link_card p,
+        .competition_card p {
+            margin-bottom: 22px;
+            color: var(--registration-muted);
+            line-height: 1.7;
+        }
+
+        .link_action {
+            color: #ff7542;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .link_action:hover {
+            color: #fff;
+        }
+
+        .competition_card {
+            min-height: 235px;
+        }
+
+        .competition_card h3 {
+            font-size: 24px;
+        }
+
+        .competition_card strong {
+            display: block;
+            margin-bottom: 12px;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .competition_meta {
+            display: inline-block;
+            padding: 7px 11px;
+            border: 1px solid rgba(255, 107, 0, 0.45);
+            border-radius: 4px;
+            color: #ff9b70;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .prize_panel {
+            margin-top: 32px;
+            padding: 32px 24px;
+            border-radius: 10px;
+            background: linear-gradient(120deg, #a90e18, var(--registration-orange));
+            text-align: center;
+        }
+
+        .prize_panel span {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+        }
+
+        .prize_panel strong {
+            display: block;
+            margin: 5px 0;
+            font-size: clamp(44px, 7vw, 76px);
+            line-height: 1.1;
+        }
+
+        .closing_block {
+            padding-top: 76px;
+            text-align: center;
+        }
+
+        .closing_block h2 {
+            margin-bottom: 12px;
+            color: #fff;
+            font-size: clamp(30px, 5vw, 54px);
+            font-weight: 700;
+        }
+
+        .closing_block p {
+            margin-bottom: 4px;
+            color: var(--registration-muted);
+        }
+
+        .closing_block em {
+            display: block;
+            margin-top: 20px;
+            color: #ff7542;
+        }
+
+        @media (max-width: 767px) {
+            .registration_menu {
+                width: 100%;
+                justify-content: center;
+                margin-top: 8px;
+            }
+
+            .registration_menu .navbar-nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 575px) {
+            .registration_main {
+                padding-top: 46px;
+            }
+
+            .registration_nav .navbar {
+                min-height: 68px;
+            }
+
+            .link_card,
+            .competition_card {
+                padding: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="registration_nav">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark px-0">
+                <a class="navbar-brand" href="index.html" aria-label="Infinite Pro League home">
+                    <img src="img/logo.png" alt="Infinite Pro League logo">
+                </a>
+                <!-- <div class="registration_menu" id="registrationMenu">
+                    <ul class="navbar-nav ml-auto align-items-lg-center">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#official-links">Official Links</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#competition">Competition</a></li>
+                    </ul>
+                </div> -->
+            </nav>
+        </div>
+    </header>
+
+    <section class="registration_partners" aria-labelledby="registration-partners-title">
+        <div class="container">
+            <h2 id="registration-partners-title">Partners &amp; Affiliations</h2>
+            <div class="client_logo_slider owl-carousel d-flex justify-content-between">
+                <div class="partner_item">
+                    <div class="single_client_logo partner_placeholder">
+                        <img src="img/Partners/rglogo.png" alt="Revolution Games">
+                    </div>
+                    <span class="partner_label">Title Partner</span>
+                </div>
+                <div class="partner_item">
+                    <div class="single_client_logo partner_placeholder">
+                        <img src="img/Partners/esfi.png" alt="Esports Federation of India">
+                    </div>
+                    <span class="partner_label">Federation Partner</span>
+                </div>
+                <div class="partner_item">
+                    <div class="single_client_logo partner_placeholder">
+                        <img src="img/Partners/esak.png" alt="Esports Association Of Kerala">
+                    </div>
+                    <span class="partner_label">Association Partner</span>
+                </div>
+                <div class="partner_item">
+                    <div class="single_client_logo partner_placeholder">
+                        <img src="img/Partners/techcon.png" alt="TechCon">
+                    </div>
+                    <span class="partner_label">Event Partner</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="registration_main">
+        <div class="container">
+            <section class="registration_hero">
+                <img src="img/ipllt.png" alt="Infinite Pro League Launch Tour">
+                <span class="registration_eyebrow">Revolution Games x Infinite Pro League</span>
+                <h1>Stay connected.<br>Stay ahead.</h1>
+                <p>Your official links for the Infinite Pro League Launch Tour at Kochi TechCon'26.</p>
+            </section>
+
+            <section id="official-links" class="mb-5">
+                <h2 class="registration_section_title">Next Step</h2>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <article class="link_card">
+                            <div><div class="link_card_icon"><i class="fab fa-whatsapp"></i></div><h3>Join WhatsApp Community</h3><p>Get tournament announcements, qualifier updates, schedules and participant information.</p></div>
+                            <a class="link_action" href="https://chat.whatsapp.com/Dn13ctbIAemHkkZ3bBH1qW" target="_blank" rel="noopener">Open WhatsApp <i class="fas fa-arrow-right"></i></a>
+                        </article>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <article class="link_card">
+                            <div><div class="link_card_icon"><i class="fab fa-instagram"></i></div><h3>Follow on Instagram</h3><p>Follow Infinite Pro League for announcements, competition updates, highlights and event content.</p></div>
+                            <a class="link_action" href="https://www.instagram.com/infiniteproleague" target="_blank" rel="noopener">Follow Instagram <i class="fas fa-arrow-right"></i></a>
+                        </article>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <article class="link_card">
+                            <div><div class="link_card_icon"><i class="fas fa-globe"></i></div><h3>Official Website</h3><p>Explore Infinite Pro League, the Launch Tour, upcoming events and Season 1.</p></div>
+                            <a class="link_action" href="index.html">Visit Website <i class="fas fa-arrow-right"></i></a>
+                        </article>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <article class="link_card">
+                            <div><div class="link_card_icon"><i class="fab fa-whatsapp"></i></div><h3>WhatsApp Enquiries</h3><p>Have a question about registration, qualifiers or the event? Contact the team directly.</p></div>
+                            <a class="link_action" href="https://chat.whatsapp.com/LBBejSCFjkdB7I6ub76rpg" target="_blank" rel="noopener">Contact Team <i class="fas fa-arrow-right"></i></a>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section id="competition">
+                <h2 class="registration_section_title">Your Competition</h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <article class="competition_card">
+                            <h3>Revo Racers</h3>
+                            <strong>₹50,000 Prize Pool + Assured Gifts</strong>
+                            <p>Online Qualifiers &rarr; LAN Competition</p>
+                            <span class="competition_meta">3-4 September | Kochi</span>
+                        </article>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <article class="competition_card">
+                            <h3>eFootball</h3>
+                            <strong>₹25,000 Prize Pool</strong>
+                            <p>Online Qualifiers &rarr; Grand LAN Finals</p>
+                            <span class="competition_meta">3 September | Kochi</span>
+                        </article>
+                    </div>
+                </div>
+                <div class="prize_panel">
+                    <span>Total Prize Pool</span>
+                    <strong>₹75,000</strong>
+                    <span>Registrations Are Open</span>
+                </div>
+            </section>
+
+            <section class="closing_block">
+                <h2>The Stage Awaits.</h2>
+                <p>Revolution Games x Infinite Pro League</p>
+                <p>Launch Tour - Kochi TechCon'26</p>
+                <em>Where Players Become Athletes.</em>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/jquery-1.12.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/custom.js"></script>
+</body>
+
+</html>
