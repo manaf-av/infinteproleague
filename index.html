@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="img/logo/iplfavicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Infinite Pro League is a platform for competitive esports in India.">
+  <title>Infinite Pro League | Competitive Esports in India</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --rail: #1A1A1A;
+      --gold-start: #7C663F;
+      --gold-end: #C6A160;
+      --muted: #929292;
+      --rail-width: 112px;
+    }
+    * { box-sizing: border-box; }
+    html { min-width: 320px; background: #000; }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .side-nav {
+      position: fixed;
+      z-index: 5;
+      inset: 0 auto 0 0;
+      display: flex;
+      width: var(--rail-width);
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 12px 20px;
+      background: var(--rail);
+    }
+    .brand { display: grid; width: 76px; height: 64px; place-items: center; margin-bottom: 34px; }
+    .brand img { display: block; width: 72px; max-height: 58px; object-fit: contain; }
+    .nav-links { display: flex; width: 100%; flex: 1; flex-direction: column; align-items: center; gap: 9px; }
+    .nav-link {
+      display: flex;
+      width: 84px;
+      min-height: 76px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 8px;
+      color: #bdbdbd;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .045em;
+      text-decoration: none;
+      transition: background .18s ease, color .18s ease;
+    }
+    .nav-link img { width: 25px; height: 25px; object-fit: contain; opacity: .82; }
+    .nav-link:hover, .nav-link[aria-current="page"] { background: #292929; color: #fff; }
+    .nav-link:hover img, .nav-link[aria-current="page"] img { opacity: 1; }
+    .nav-link.register { min-height: 72px; margin-top: auto; background: #D52B2B; color: #fff; }
+    .nav-link.register:hover { background: #f03a3a; }
+    .nav-link.register img { width: 21px; height: 25px; }
+    .more-menu { position: relative; width: 100%; }
+    .more-menu > summary { list-style: none; cursor: pointer; }
+    .more-menu > summary::-webkit-details-marker { display: none; }
+    .more-card { position: absolute; z-index: 10; left: calc(100% + 12px); bottom: 0; display: none; width: 270px; gap: 6px; padding: 10px; border: 1px solid #343434; border-radius: 10px; background: #181818; box-shadow: 0 14px 36px #0009; }
+    .more-menu:hover .more-card, .more-menu:focus-within .more-card, .more-menu[open] .more-card { display: grid; }
+    .more-option { display: flex; min-height: 54px; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 7px; color: #eee; font-size: 13px; font-weight: 650; line-height: 1.3; text-decoration: none; }
+    .more-option:hover, .more-option:focus-visible { background: #292929; color: #fff; }
+    .more-option img { flex: 0 0 auto; width: 25px; height: 25px; object-fit: contain; }
+    .more-option .icn-logo { width: 72px; height: 30px; filter: brightness(0) invert(1); }
+    .more-option.mobile-register { background: #D52B2B; }
+    .more-option.mobile-register:hover, .more-option.mobile-register:focus-visible { background: #f03a3a; }
+
+    main { min-height: 100vh; margin-left: var(--rail-width); padding: 0 0 54px; }
+    .page { width: 100%; margin: 0; }
+    .hero { position: relative; width: calc(100% + var(--rail-width)); height: min(68vh, 760px); min-height: 350px; margin: 0 0 34px calc(-1 * var(--rail-width)); overflow: hidden; background: #16131b; touch-action: pan-y; }
+    .hero-track { display: flex; width: 100%; height: 100%; transition: transform .35s ease; }
+    .hero-slide { flex: 0 0 100%; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+    .hero::after { position: absolute; inset: 45% 0 0; background: linear-gradient(0deg, rgba(0,0,0,.62), transparent); content: ""; pointer-events: none; }
+    .hero-caption { position: absolute; z-index: 1; right: 24px; bottom: 20px; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+    .hero-control { position: absolute; z-index: 2; top: 50%; display: grid; width: 42px; height: 42px; place-items: center; transform: translateY(-50%); border: 1px solid #ffffff80; border-radius: 50%; background: #0008; color: white; font-size: 24px; cursor: pointer; }
+    .hero-control.prev { left: calc(var(--rail-width) + 22px); } .hero-control.next { right: 22px; }
+    .hero-dots { position: absolute; z-index: 2; bottom: 22px; left: 50%; display: flex; gap: 8px; transform: translateX(-50%); }
+    .hero-dot { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%; background: #ffffff80; cursor: pointer; }
+    .hero-dot[aria-current="true"] { background: #fff; }
+    .page-content { width: min(1200px, 100%); margin: 0 auto; padding: 0 clamp(24px, 5vw, 76px); }
+    .eyebrow, h1, .stats { margin-left: clamp(24px, 5vw, 76px); margin-right: clamp(24px, 5vw, 76px); }
+    .eyebrow { display: flex; align-items: center; gap: 10px; margin-top: 2px; margin-bottom: 16px; color: #d2d2d2; font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; }
+    .eyebrow::before { width: 22px; height: 1px; background: var(--gold-end); content: ""; }
+    h1 { margin: 0 0 25px; font-size: clamp(28px, 4vw, 48px); font-weight: 750; letter-spacing: -.045em; line-height: 1.06; }
+    h1 { margin-left: clamp(40px, calc(5vw + 16px), 92px); }
+    h1 span { color: #a5a5a5; font-weight: 450; }
+    .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 20px; }
+    .stat-card { min-height: 138px; padding: 22px 24px 20px; border: 1px solid #272727; border-radius: 4px; background: linear-gradient(130deg, #101010, #080808 68%); }
+    .stat-number { display: inline-block; margin-bottom: 4px; background: linear-gradient(35deg, var(--gold-start) 4%, var(--gold-end) 88%); background-clip: text; color: transparent; font-size: clamp(38px, 4vw, 52px); font-weight: 760; letter-spacing: -.055em; line-height: 1.05; }
+    .stat-label { margin: 3px 0 0; color: var(--muted); font-size: 13px; font-weight: 500; }
+    .stat-context { margin: 10px 0 0; color: #666; font-size: 10px; letter-spacing: .11em; text-transform: uppercase; }
+    .about-section, .campus-section { width: min(1100px, 100%); margin: 76px auto 0; padding: 0 32px; }
+    .about-title, .campus-title { margin: 0 0 18px; font-size: clamp(24px, 3.2vw, 40px); line-height: 1.15; letter-spacing: -.035em; }
+    .about-copy { max-width: 900px; color: #bdbdbd; font-size: 15px; line-height: 1.8; }
+    .about-copy p { margin: 0 0 14px; }
+    .campus-panel { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: center; gap: clamp(28px, 6vw, 72px); padding: clamp(26px, 5vw, 56px); border: 1px solid #5a1717; border-radius: 8px; background: linear-gradient(125deg, #141010, #090909 72%); }
+    .campus-logo-wrap { display: grid; min-height: 210px; place-items: center; padding: 24px; border-radius: 6px; }
+    .campus-logo { display: block; width: min(100%, 390px); height: auto; object-fit: contain; }
+    .campus-kicker { margin: 0 0 10px; color: #ff3030; font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+    .campus-headline { margin: 0 0 14px; font-size: clamp(21px, 2.5vw, 30px); line-height: 1.25; letter-spacing: -.025em; }
+    .campus-copy { margin: 0; color: #bdbdbd; font-size: 15px; line-height: 1.8; }
+    .campus-motto { margin: 18px 0 0; color: #fff; font-size: 15px; font-weight: 750; letter-spacing: .08em; }
+    .campus-button { display: inline-flex; min-height: 46px; align-items: center; justify-content: center; margin-top: 22px; padding: 0 22px; border: 1px solid #ff3030; border-radius: 6px; background: #ff3030; color: #fff; font-size: 13px; font-weight: 750; text-decoration: none; transition: background .18s ease, color .18s ease; }
+    .campus-button:hover { background: transparent; color: #fff; }
+    .latest-news-section { width: min(1100px, 100%); margin: 76px auto 0; padding: 0 32px; }
+    .latest-news-title { margin: 0 0 22px; font-size: clamp(24px, 3.2vw, 40px); line-height: 1.15; letter-spacing: -.035em; }
+    .latest-news-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+    .latest-news-card { min-width: 0; }
+    .latest-news-card a { display: block; color: inherit; text-decoration: none; }
+    .latest-news-card img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+    .latest-news-card h3 { margin: 13px 0 7px; font-size: clamp(14px, 1.5vw, 18px); line-height: 1.4; }
+    .latest-news-card a:hover h3, .latest-news-card a:focus-visible h3 { color: var(--gold-end); }
+    .latest-news-card time { color: var(--muted); font-size: 12px; }
+    .latest-news-more { display: flex; justify-content: center; margin-top: 28px; }
+    .latest-news-button { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; padding: 0 24px; border: 1px solid var(--gold-end); border-radius: 6px; color: #fff; font-size: 13px; font-weight: 700; text-decoration: none; transition: background .18s ease; }
+    .latest-news-button:hover { background: #c6a16022; }
+    .partners-section { width: min(1100px, 100%); margin: 76px auto 0; padding: 0 32px; }
+    .partners-title, .alumni-title { margin: 0 0 22px; font-size: clamp(24px, 3.2vw, 40px); line-height: 1.15; letter-spacing: -.035em; }
+    .partner-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 260px)); gap: 24px; }
+    .partner-logo-card { display: grid; min-height: 150px; place-items: center start; padding: 8px 0; }
+    .partner-logo-card img { display: block; width: auto; max-width: 100%; height: 112px; border-radius: 12px; object-fit: contain; }
+    .alumni-block { margin-top: 52px; }
+    .alumni-title { margin-bottom: 18px; font-size: clamp(19px, 2.4vw, 28px); }
+    .alumni-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 140px)); gap: 18px; }
+    .alumni-logo-card { display: grid; min-height: 96px; place-items: center start; padding: 8px 0; }
+    .alumni-logo-card img { display: block; width: auto; max-width: 100%; height: 64px; border-radius: 12px; object-fit: contain; }
+    .tour-section { width: min(1100px, 100%); margin: 76px auto 0; padding: 0 32px; text-align: center; }
+    .tour-title { margin: 0 auto 10px; font-size: clamp(24px, 3.2vw, 40px); line-height: 1.15; letter-spacing: -.035em; }
+    .tour-subtitle { margin: 0 0 25px; color: var(--muted); font-size: 14px; }
+    .tour-carousel { position: relative; width: 100%; overflow: hidden; touch-action: pan-y; }
+    .tour-track { display: flex; width: 100%; align-items: center; transition: transform .45s ease; }
+    .tour-slide { flex: 0 0 100%; display: grid; width: 100%; place-items: center; }
+    .tour-slide img { display: block; width: auto; max-width: 100%; height: auto; max-height: 75vh; object-fit: contain; object-position: center; border-radius: 14px; }
+    .tour-dots { position: absolute; right: 0; bottom: 14px; left: 0; display: flex; justify-content: center; gap: 8px; }
+    .tour-dot { width: 9px; height: 9px; padding: 0; border: 1px solid #fff; border-radius: 50%; background: #ffffff70; cursor: pointer; }
+    .tour-dot[aria-current="true"] { background: #fff; }
+    .winners-table-wrap { width: 100%; margin: 28px auto 0; overflow-x: auto; border: 1px solid #292929; border-radius: 12px; }
+    .winners-table { width: 100%; border-collapse: collapse; text-align: left; }
+    .winners-table th, .winners-table td { padding: 16px 20px; border-bottom: 1px solid #292929; }
+    .winners-table th { color: var(--gold-end); font-size: 11px; letter-spacing: .12em; }
+    .winners-table td { color: #e5e5e5; font-size: 14px; }
+    .winners-table tbody tr:last-child td { border-bottom: 0; }
+    .winners-table td:last-child { white-space: nowrap; }
+    .rankings-button { display: inline-flex; min-height: 46px; align-items: center; justify-content: center; margin-top: 22px; padding: 0 24px; border: 1px solid var(--gold-end); border-radius: 6px; color: #fff; font-size: 13px; font-weight: 700; text-decoration: none; transition: background .18s ease; }
+    .rankings-button:hover { background: #c6a16022; }
+    .site-footer { display: block; width: 100%; margin-top: 48px; border-top: 3px solid var(--gold-end); background: #181818; color: #fff; }
+    .site-footer-inner { display: grid; grid-template-columns: 1.15fr 1.5fr 1fr .8fr; gap: 36px; width: min(1200px, 100%); margin: 0 auto; padding: 44px 32px; }
+    .site-footer-logo img { display: block; width: 300px; max-width: 100%; max-height: 180px; margin-bottom: 16px; object-fit: contain; }
+    .site-footer h2 { margin: 0 0 15px; font-size: 15px; }
+    .site-footer p, .site-footer a { color: #c0c0c0; font-size: 13px; line-height: 1.7; }
+    .site-footer p { margin: 0 0 10px; }
+    .site-footer a { text-decoration: none; }
+    .site-footer a:hover { color: #fff; }
+    .site-footer ul { display: grid; gap: 7px; margin: 0; padding: 0; list-style: none; }
+    .site-footer-social { display: flex; align-items: center; gap: 24px; }
+    .site-footer-social a { display: inline-flex; align-items: center; justify-content: center; color: #fff; }
+    .site-footer-social img { display: block; width: auto; height: 24px; object-fit: contain; filter: invert(1); }
+    .site-footer-copy { padding: 16px 24px; border-top: 1px solid #383838; color: #aaa; font-size: 12px; text-align: center; }
+
+    @media (max-width: 700px) {
+      :root { --rail-width: 0px; }
+      .side-nav { inset: auto 0 0; width: 100%; height: calc(68px + env(safe-area-inset-bottom)); flex-direction: row; justify-content: center; padding: 5px 7px calc(5px + env(safe-area-inset-bottom)); border-top: 1px solid #303030; }
+      .brand, .side-nav > .nav-link.register { display: none; }
+      .nav-links { flex: initial; width: min(100%, 520px); height: 100%; flex-direction: row; justify-content: space-around; gap: 0; }
+      .nav-link { width: 20%; min-height: 54px; gap: 5px; border-radius: 6px; font-size: 9px; letter-spacing: 0; }
+      .nav-link img { width: 20px; height: 20px; }
+
+      .more-menu { position: static; flex: 1; min-width: 0; width: auto; }
+      .more-menu > summary { width: 100%; min-height: 54px; gap: 5px; font-size: 9px; letter-spacing: 0; }
+      .more-card { position: fixed; right: 12px; bottom: calc(76px + env(safe-area-inset-bottom)); left: 12px; width: auto; }
+      main { min-height: 100vh; margin-left: 0; padding: 0 0 calc(90px + env(safe-area-inset-bottom)); }
+      .hero { height: 48vh; min-height: 250px; margin: 0 0 25px; }
+      .hero-slide { object-position: 50% center; }
+      .hero-control.prev { left: 12px; } .hero-control.next { right: 12px; }
+      .eyebrow, h1, .stats { margin-left: 16px; margin-right: 16px; }
+      h1 { margin-left: 32px; }
+      .eyebrow { margin-bottom: 12px; font-size: 9px; }
+      h1 { margin-bottom: 17px; font-size: clamp(27px, 8vw, 38px); }
+      .hero-caption { right: 13px; bottom: 13px; font-size: 9px; }
+      .stats { grid-template-columns: 1fr; gap: 11px; margin-top: 14px; }
+      .stat-card { min-height: 120px; padding: 18px 20px; }
+      .stat-number { font-size: 45px; }
+      .about-section, .campus-section { margin-top: 54px; padding: 0 16px; }
+      .about-copy, .campus-copy { font-size: 13px; }
+      .campus-panel { grid-template-columns: 1fr; gap: 24px; padding: 20px; }
+      .campus-logo-wrap { min-height: 150px; }
+      .campus-logo { width: min(100%, 300px); }
+      .latest-news-section { margin-top: 54px; padding: 0 16px; }
+      .latest-news-grid { grid-template-columns: repeat(3, minmax(240px, 78vw)); gap: 14px; overflow-x: auto; padding-bottom: 8px; }
+      .latest-news-card h3 { font-size: 16px; }
+      .partners-section { margin-top: 54px; padding: 0 16px; }
+      .partner-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+      .partner-logo-card { min-height: 120px; }
+      .partner-logo-card img { height: 84px; }
+      .alumni-grid { grid-template-columns: repeat(2, minmax(0, 140px)); gap: 14px; }
+      .alumni-logo-card { min-height: 88px; }
+      .alumni-logo-card img { height: 56px; }
+      .tour-section { margin-top: 54px; padding: 0 16px; }
+      .tour-subtitle { font-size: 12px; }
+      .tour-slide img { max-height: 62vh; }
+      .tour-slide img { border-radius: 10px; }
+      .site-footer-inner { grid-template-columns: 1fr 1fr; gap: 28px 18px; padding: 34px 20px; }
+      .site-footer-copy { padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
+    }
+    @media (min-width: 701px) and (max-height: 650px) {
+      .side-nav { padding-top: 12px; padding-bottom: 12px; }
+      .brand { margin-bottom: 10px; }
+      .nav-links { gap: 0; }
+      .nav-link { min-height: 62px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
+      @media (max-width: 900px) {
+      :root { --rail-width: 0px; }
+      .side-nav { inset: auto 0 0; width: 100%; height: calc(68px + env(safe-area-inset-bottom)); flex-direction: row; justify-content: center; padding: 5px 7px calc(5px + env(safe-area-inset-bottom)); border-top: 1px solid #303030; }
+      .brand, .side-nav > .nav-link.register { display: none; }
+      .nav-links { flex: initial; width: min(100%, 520px); height: 100%; flex-direction: row; align-items: center; justify-content: space-around; gap: 0; }
+      .nav-links > a[href*="news.html"] { display: none; }
+      .nav-link { width: 25%; min-height: 54px; gap: 5px; border-radius: 6px; font-size: 9px; letter-spacing: 0; }
+      .nav-link img { width: 20px; height: 20px; }
+      .more-menu { position: static; flex: 1; min-width: 0; width: auto; }
+      .more-menu > summary { width: 100%; min-height: 54px; gap: 5px; font-size: 9px; letter-spacing: 0; }
+      .more-card { position: fixed; right: 12px; bottom: calc(76px + env(safe-area-inset-bottom)); left: 12px; width: auto; }
+      main { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="side-nav" aria-label="Main navigation">
+    <a class="brand" href="#home" aria-label="Infinite Pro League home"><img src="img/nav/inpllg-nav.png" alt="Infinite Pro League"></a>
+    <div class="nav-links">
+      <a class="nav-link" href="#home" aria-current="page"><img src="img/nav/home.svg" alt=""><span>Home</span></a>
+      <a class="nav-link" href="competitions.html"><img src="img/nav/comp.svg" alt=""><span>Competitions</span></a>
+      <a class="nav-link" href="rankings.html"><img src="img/nav/rank.svg" alt=""><span>Rankings</span></a>
+      <a class="nav-link" href="news.html"><img src="img/nav/news.svg" alt=""><span>News</span></a>
+      <details class="more-menu"><summary class="nav-link"><img src="img/nav/more.svg" alt=""><span>More</span></summary><div class="more-card"><a class="more-option" href="index.html#campus-title"><img class="icn-logo" src="img/logo/icn.svg" alt=""><span>Infinite Campus Next</span></a><a class="more-option" href="regulations.html"><img src="img/ico/rulesico.svg" alt=""><span>Global League regulations</span></a><a class="more-option mobile-register" href="club-register.html"><img src="img/nav/reg.svg" alt=""><span>Club Register</span></a></div></details>
+    </div>
+    <a class="nav-link register" href="club-register.html"><img src="img/nav/reg.svg" alt=""><span>Club Register</span></a>
+  </nav>
+
+  <main id="home">
+    <div class="page"><figure class="hero">
+        <div class="hero-track">
+          <img class="hero-slide" src="img/home/pic1.png" alt="Infinite Pro League community celebrating an esports achievement">
+          <img class="hero-slide" src="img/home/pic2.png" alt="Infinite Pro League event">
+          <img class="hero-slide" src="img/home/pic3.png" alt="Infinite Pro League Chief Minister of Kerala attending the event">
+          <img class="hero-slide" src="img/home/pic4.png" alt="Infinite Pro League event">
+          <img class="hero-slide" src="img/home/pic5.png" alt="Infinite Pro League crew">
+          <img class="hero-slide" src="img/home/pic6.png" alt="Infinite Pro League crowd cheering">
+          <img class="hero-slide" src="img/home/pic7.png" alt="Infinite Pro League experience zone">
+          <img class="hero-slide" src="img/home/pic8.png" alt="Infinite Pro League women gamer appreciation">
+          <img class="hero-slide" src="img/home/pic9.png" alt="Infinite Pro League family">
+        </div>
+        <figcaption class="hero-caption">Hosted Keralam's biggest esports event of the year 2026</figcaption>
+        <button class="hero-control prev" type="button" aria-label="Previous image">‹</button>
+        <button class="hero-control next" type="button" aria-label="Next image">›</button>
+        <div class="hero-dots" role="group" aria-label="Choose hero image"></div>
+      </figure>
+      <p class="eyebrow">Where Players Become Athletes</p>
+      <h1>India's competitive esports platform</h1>
+      <section class="stats" aria-label="Infinite Pro League reach">
+        <article class="stat-card">
+          <div class="stat-number">1 Million+</div>
+          <p class="stat-label">People reached</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-number">18,000+</div>
+          <p class="stat-label">Onsite attendance</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-number">1,500+</div>
+          <p class="stat-label">Players Registered</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-number">₹75,000+</div>
+          <p class="stat-label">Prizepool</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-number">14/14</div>
+          <p class="stat-label">Keralam Districts represented</p>
+        </article>
+      </section>
+      <section class="tour-section" aria-labelledby="tour-title">
+        <h2 class="tour-title" id="tour-title">Infinite Pro League Launch Tour- Kochi Sept 2026 Winners</h2>
+        <p class="tour-subtitle">Powered by Revolution Games with TechCon'26</p>
+        <div class="tour-carousel" aria-label="Launch Tour winners images">
+          <div class="tour-track">
+            <div class="tour-slide"><img src="img/home/tru1.png" alt="Infinite Pro League Launch Tour winner"></div>
+            <div class="tour-slide"><img src="img/home/tru2.png" alt="Infinite Pro League Launch Tour winner"></div>
+            <div class="tour-slide"><img src="img/home/tru3.png" alt="Infinite Pro League Launch Tour winner"></div>
+          </div>
+          <div class="tour-dots" aria-label="Choose winners image">
+            <button class="tour-dot" type="button" aria-label="Show winners image 1" aria-current="true"></button>
+            <button class="tour-dot" type="button" aria-label="Show winners image 2" aria-current="false"></button>
+            <button class="tour-dot" type="button" aria-label="Show winners image 3" aria-current="false"></button>
+          </div>
+        </div>
+        <div class="winners-table-wrap">
+          <table class="winners-table">
+            <thead>
+              <tr><th scope="col">POSITION</th><th scope="col">IGN</th><th scope="col">POINTS</th><th scope="col">PRIZE</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>CHAMPION</td><td><strong>Joel-TFC</strong></td><td>2.510</td><td>&#8377;12,000</td></tr>
+              <tr><td>Runner Up</td><td><strong>SPDY_Gaming</strong></td><td>2.379</td><td>&#8377;8,000</td></tr>
+              <tr><td>Third Place</td><td><strong>PEAK_HANiY-TsK</strong></td><td>2.193</td><td>&#8377;5,000</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <a class="rankings-button" href="rankings.html">See Full Rankings</a>
+      </section>
+      <section class="about-section" aria-labelledby="about-title">
+        <h2 class="about-title" id="about-title">About Infinite Pro League</h2>
+        <div class="about-copy">
+          <p>Infinite Pro League (Infinite PL) is a competitive esports ecosystem built to discover, develop, and recognize the next generation of gaming talent. Through professionally organized tournaments, community-driven events, and the Infinite Rankings system, we provide players with a clear pathway to compete, improve, and earn recognition.</p>
+          <p>From grassroots competitions to premier championships, Infinite Pro League is committed to building a sustainable and inclusive esports ecosystem where every match matters and every player has the opportunity to rise.</p>
+        </div>
+      </section>
+      <section class="campus-section" aria-labelledby="campus-title">
+        <div class="campus-panel">
+          <div class="campus-logo-wrap">
+            <img class="campus-logo" src="img/logo/icn.svg" alt="Infinite Campus Next logo">
+          </div>
+          <div class="campus-content">
+            <p class="campus-kicker">Infinite Pro League presents</p>
+            <h2 class="campus-title" id="campus-title">Infinite Campus Next</h2>
+            <h3 class="campus-headline">Where Students Meet the Esports &amp; Gaming Industry.</h3>
+            <p class="campus-copy">A practical industry program connecting students with real-world opportunities in marketing, content, events, management and esports.</p>
+            <p class="campus-motto">Learn. Work. Build.</p>
+            <a class="campus-button" href="mailto:info@infiniteproleague.com?subject=Apply%20for%20Infinite%20Campus%20Next">Apply for Infinite Campus Next</a>
+          </div>
+        </div>
+      </section>
+      <section class="latest-news-section" aria-labelledby="latest-news-title">
+        <h2 class="latest-news-title" id="latest-news-title">Latest from Infinite Pro League</h2>
+        <div class="latest-news-grid">
+          <article class="latest-news-card">
+            <a href="news/article.html?story=kochi-launch-tour">
+              <img src="img/news/news-lte1techcon.png" alt="Infinite Pro League Launch Tour at TechCon26 in Kochi">
+              <h3>Infinite Pro League Launch Tour Kochi: 18,000+ Attendees Mark the Beginning of a New Esports Journey</h3>
+              <time datetime="2026-09-05">5 September, 2026</time>
+            </a>
+          </article>
+          <article class="latest-news-card">
+            <a href="news/article.html?story=chengannur-mla">
+              <img src="img/news/news-mlacgnr.png" alt="Infinite Pro League League Director meets Chengannur MLA Saji Cherian">
+              <h3>Infinite Pro League League Director Manaf Abdul Vahid Meets Chengannur MLA Saji Cherian</h3>
+              <time datetime="2026-09-02">2 September, 2026</time>
+            </a>
+          </article>
+          <article class="latest-news-card">
+            <a href="news/article.html?story=sports-minister">
+              <img src="img/news/news-sptmin.png" alt="Infinite Pro League team meets Kerala Sports Minister">
+              <h3>Infinite Pro League Team Meets Kerala Sports Minister Adv. O. J. Janeesh to Discuss the Growth of Esports</h3>
+              <time datetime="2026-07-29">29 July, 2026</time>
+            </a>
+          </article>
+        </div>
+        <div class="latest-news-more"><a class="latest-news-button" href="news.html">Load More</a></div>
+      </section>
+      <section class="partners-section" aria-labelledby="partners-title">
+        <h2 class="partners-title" id="partners-title">Partners</h2>
+        <div class="partner-grid">
+          <div class="partner-logo-card"><img src="img/partners/p1.png" alt="Esports Federation of India"></div>
+          <div class="partner-logo-card"><img src="img/partners/p2.png" alt="Esports Association of Kerala"></div>
+        </div>
+        <div class="alumni-block" aria-labelledby="alumni-title">
+          <h3 class="alumni-title" id="alumni-title">Alumni Partners</h3>
+          <div class="alumni-grid">
+            <div class="alumni-logo-card"><img src="img/partners/p3.png" alt="Revolution Games"></div>
+            <div class="alumni-logo-card"><img src="img/partners/p4.png" alt="TechCon26"></div>
+            <div class="alumni-logo-card"><img src="img/partners/p5.png" alt="ASUS"></div>
+            <div class="alumni-logo-card"><img src="img/partners/p6.png" alt="Kerala Startup Mission"></div>
+            <div class="alumni-logo-card"><img src="img/partners/p7.png" alt="IEDC"></div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+  <footer class="site-footer" id="contact">
+    <div class="site-footer-inner">
+      <div>
+        <a class="site-footer-logo" href="#home" aria-label="Infinite Pro League home"><img src="img/logo/logo.svg" alt="Infinite Pro League logo"></a>
+        <p>Where Players Become Athletes</p>
+      </div>
+      <div>
+        <h2>Contact</h2>
+        <p>Email: info@infiniteproleague.com</p>
+        <p>Office: GREAT INDIA, Ground Floor, Kollakadavu, Chengannur, Alappuzha District, Kerala, India</p>
+      </div>
+      <div>
+        <h2>Links</h2>
+        <ul>
+          <li><a href="rankings.html">Infinite Rankings</a></li>
+          <li><a href="index.html#partners-title">Partners</a></li>
+          <li><a href="index.html#campus-title">Infinite Campus Next</a></li>
+          <li><a href="regulations.html">Global League Regulations</a></li>
+          <li><a href="club-register.html">Club Register</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Social</h2>
+        <div class="site-footer-social">
+          <a href="#" aria-label="Instagram"><img src="img/ico/insta.svg" alt=""></a>
+          <a href="#" aria-label="YouTube"><img src="img/ico/yt.svg" alt=""></a>
+          <a href="#" aria-label="Discord"><img src="img/ico/dsc.svg" alt=""></a>
+        </div>
+      </div>
+    </div>
+    <div class="site-footer-copy">Copyright &copy; <span id="copyright-year"></span> Infinite Pro League. All rights reserved.</div>
+  </footer>
+  <script>
+    document.querySelector('#copyright-year').textContent = new Date().getFullYear();
+    const hero = document.querySelector('.hero');
+    const track = document.querySelector('.hero-track');
+    const slides = [...track.querySelectorAll('.hero-slide')];
+    const dotContainer = hero.querySelector('.hero-dots');
+    const dots = slides.map((_, index) => {
+      const dot = document.createElement('button');
+      dot.className = 'hero-dot';
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Show image ${index + 1}`);
+      dot.setAttribute('aria-current', String(index === 0));
+      dot.addEventListener('click', () => showSlide(index));
+      dotContainer.append(dot);
+      return dot;
+    });
+    let activeSlide = 0;
+    const showSlide = (index) => {
+      activeSlide = (index + slides.length) % slides.length;
+      track.style.transform = `translateX(-${activeSlide * 100}%)`;
+      dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === activeSlide)));
+    };
+    document.querySelector('.hero-control.prev').addEventListener('click', () => showSlide(activeSlide - 1));
+    document.querySelector('.hero-control.next').addEventListener('click', () => showSlide(activeSlide + 1));
+    if (slides.length > 1) window.setInterval(() => showSlide(activeSlide + 1), 5000);
+    let startX = null;
+    hero.addEventListener('touchstart', e => { startX = e.changedTouches[0].clientX; }, { passive: true });
+    hero.addEventListener('touchend', e => {
+      if (startX === null) return;
+      const delta = e.changedTouches[0].clientX - startX;
+      if (Math.abs(delta) > 45) showSlide(activeSlide + (delta < 0 ? 1 : -1));
+      startX = null;
+    }, { passive: true });
+    const tourCarousel = document.querySelector('.tour-carousel');
+    const tourTrack = document.querySelector('.tour-track');
+    const tourDots = [...document.querySelectorAll('.tour-dot')];
+    let activeTourSlide = 0;
+    const showTourSlide = (index) => {
+      activeTourSlide = (index + tourDots.length) % tourDots.length;
+      tourTrack.style.transform = `translateX(-${activeTourSlide * 100}%)`;
+      tourDots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === activeTourSlide)));
+    };
+    tourDots.forEach((dot, i) => dot.addEventListener('click', () => showTourSlide(i)));
+    window.setInterval(() => showTourSlide(activeTourSlide + 1), 5000);
+    let tourStartX = null;
+    tourCarousel.addEventListener('touchstart', e => { tourStartX = e.changedTouches[0].clientX; }, { passive: true });
+    tourCarousel.addEventListener('touchend', e => {
+      if (tourStartX === null) return;
+      const delta = e.changedTouches[0].clientX - tourStartX;
+      if (Math.abs(delta) > 45) showTourSlide(activeTourSlide + (delta < 0 ? 1 : -1));
+      tourStartX = null;
+    }, { passive: true });
+  </script></body>
+</html>

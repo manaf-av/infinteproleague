@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="img/logo/iplfavicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Introduce your esports or gaming club to Infinite Pro League through the Infinite Club Register.">
+  <title>Infinite Club Register | Infinite Pro League</title>
+  <style>
+    :root { color-scheme: dark; --rail: #1a1a1a; --gold: #c6a160; --muted: #a6a6a6; --rail-width: 112px; }
+    * { box-sizing: border-box; }
+    html { min-width: 320px; background: #000; }
+    body { min-height: 100vh; margin: 0; background: #000; color: #fff; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .side-nav { position: fixed; z-index: 5; inset: 0 auto 0 0; display: flex; width: var(--rail-width); flex-direction: column; align-items: center; padding: 24px 12px 20px; background: var(--rail); }
+    .brand { display: grid; width: 76px; height: 64px; place-items: center; margin-bottom: 34px; }
+    .brand img { display: block; width: 72px; max-height: 58px; object-fit: contain; }
+    .nav-links { display: flex; width: 100%; flex: 1; flex-direction: column; align-items: center; gap: 9px; }
+    .nav-link { display: flex; width: 84px; min-height: 76px; flex-direction: column; align-items: center; justify-content: center; gap: 8px; border-radius: 8px; color: #bdbdbd; font-size: 10px; font-weight: 600; letter-spacing: .045em; text-decoration: none; transition: background .18s ease, color .18s ease; }
+    .nav-link img { width: 25px; height: 25px; object-fit: contain; opacity: .82; }
+    .nav-link:hover, .nav-link[aria-current="page"] { background: #292929; color: #fff; }
+    .nav-link:hover img, .nav-link[aria-current="page"] img { opacity: 1; }
+    .nav-link.register { min-height: 72px; margin-top: auto; background: #d52b2b; color: #fff; }
+    .nav-link.register:hover { background: #f03a3a; }
+    .nav-link.register img { width: 21px; height: 25px; }
+    .more-menu { position: relative; width: 100%; }
+    .more-menu > summary { list-style: none; cursor: pointer; }
+    .more-menu > summary::-webkit-details-marker { display: none; }
+    .more-card { position: absolute; z-index: 10; bottom: 0; left: calc(100% + 12px); display: none; width: 270px; gap: 6px; padding: 10px; border: 1px solid #343434; border-radius: 10px; background: #181818; box-shadow: 0 14px 36px #0009; }
+    .more-menu:hover .more-card, .more-menu:focus-within .more-card, .more-menu[open] .more-card { display: grid; }
+    .more-option { display: flex; min-height: 54px; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 7px; color: #eee; font-size: 13px; font-weight: 650; line-height: 1.3; text-decoration: none; }
+    .more-option:hover, .more-option:focus-visible { background: #292929; color: #fff; }
+    .more-option img { flex: 0 0 auto; width: 25px; height: 25px; object-fit: contain; }
+    .more-option .icn-logo { width: 72px; height: 30px; filter: brightness(0) invert(1); }
+    .more-option.mobile-register { background: #d52b2b; }
+    .more-option.mobile-register:hover, .more-option.mobile-register:focus-visible { background: #f03a3a; }
+    main { min-height: 100vh; margin-left: var(--rail-width); padding: 0 0 54px; }
+    .club-banner { width: calc(100% + var(--rail-width)); height: clamp(220px, 34vw, 440px); margin: 0 0 48px calc(-1 * var(--rail-width)); overflow: hidden; background: #171717; }
+    .club-banner img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .club-register-content { width: min(900px, 100%); margin: 0 auto; padding: 0 32px; }
+    h1 { margin: 0 0 10px; font-size: clamp(32px, 5vw, 52px); letter-spacing: -.045em; line-height: 1.08; }
+    h2 { margin: 0 0 14px; font-size: clamp(20px, 2.8vw, 28px); letter-spacing: -.025em; line-height: 1.25; }
+    .intro { margin-bottom: 34px; color: #c7c7c7; font-size: 15px; line-height: 1.8; }
+    .club-register-content p { line-height: 1.8; }
+    .content-section { margin: 30px 0; }
+    .content-section p { margin: 0 0 12px; color: #c7c7c7; }
+    .content-section ul { display: grid; gap: 9px; margin: 12px 0 0; padding-left: 22px; color: #c7c7c7; line-height: 1.7; }
+    .content-section li::marker { color: var(--gold); }
+    .club-email { display: inline-block; margin: 2px 0 8px; color: var(--gold); font-size: clamp(23px, 4vw, 30px); font-weight: 750; letter-spacing: -.02em; text-decoration: none; }
+    .club-email:hover { color: #fff; }
+    .subject { color: #fff !important; font-weight: 650; }
+    .disclaimer { margin: 24px 0 38px !important; color: #929292 !important; font-size: 13px; font-style: italic; }
+    .closing-line { margin: 42px 0 0; color: #fff; font-size: clamp(20px, 3vw, 27px); font-weight: 750; letter-spacing: -.02em; }
+    .site-footer { display: block; width: 100%; margin-top: 48px; border-top: 3px solid var(--gold); background: #181818; color: #fff; }
+    .site-footer-inner { display: grid; grid-template-columns: 1.15fr 1.5fr 1fr .8fr; gap: 36px; width: min(1200px, 100%); margin: 0 auto; padding: 44px 32px; }
+    .site-footer-logo img { display: block; width: 300px; max-width: 100%; max-height: 180px; margin-bottom: 16px; object-fit: contain; }
+    .site-footer h2 { margin: 0 0 15px; font-size: 15px; }
+    .site-footer p, .site-footer a { color: #c0c0c0; font-size: 13px; line-height: 1.7; }
+    .site-footer p { margin: 0 0 10px; }
+    .site-footer a { text-decoration: none; }
+    .site-footer a:hover { color: #fff; }
+    .site-footer ul { display: grid; gap: 7px; margin: 0; padding: 0; list-style: none; }
+    .site-footer-social { display: flex; align-items: center; gap: 24px; }
+    .site-footer-social a { display: inline-flex; align-items: center; justify-content: center; color: #fff; }
+    .site-footer-social img { display: block; width: auto; height: 24px; object-fit: contain; filter: invert(1); }
+    .site-footer-copy { padding: 16px 24px; border-top: 1px solid #383838; color: #aaa; font-size: 12px; text-align: center; }
+    @media (max-width: 900px) {
+      :root { --rail-width: 0px; }
+      .side-nav { inset: auto 0 0; width: 100%; height: calc(68px + env(safe-area-inset-bottom)); flex-direction: row; justify-content: center; padding: 5px 7px calc(5px + env(safe-area-inset-bottom)); border-top: 1px solid #303030; }
+      .brand, .side-nav > .nav-link.register { display: none; }
+      .nav-links { flex: initial; width: min(100%, 520px); height: 100%; flex-direction: row; align-items: center; justify-content: space-around; gap: 0; }
+      .nav-links > a[href*="news.html"] { display: none; }
+      .nav-link { width: 25%; min-height: 54px; gap: 5px; border-radius: 6px; font-size: 9px; letter-spacing: 0; }
+      .nav-link img { width: 20px; height: 20px; }
+      .more-menu { position: static; flex: 1; min-width: 0; width: auto; }
+      .more-menu > summary { width: 100%; min-height: 54px; gap: 5px; font-size: 9px; letter-spacing: 0; }
+      .more-card { position: fixed; right: 12px; bottom: calc(76px + env(safe-area-inset-bottom)); left: 12px; width: auto; }
+      main { margin-left: 0; padding-bottom: calc(86px + env(safe-area-inset-bottom)); }
+      .club-banner { height: clamp(220px, 52vw, 380px); margin-bottom: 34px; }
+      .club-register-content { padding: 0 20px; }
+      .site-footer-inner { grid-template-columns: 1fr 1fr; gap: 28px 18px; padding: 34px 20px; }
+      .site-footer-copy { padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
+    }
+    @media (max-width: 480px) { .club-register-content { padding: 0 16px; } .intro { font-size: 14px; } }
+  </style>
+</head>
+<body>
+  <nav class="side-nav" aria-label="Main navigation">
+    <a class="brand" href="index.html" aria-label="Infinite Pro League home"><img src="img/nav/inpllg-nav.png" alt="Infinite Pro League"></a>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html"><img src="img/nav/home.svg" alt=""><span>Home</span></a>
+      <a class="nav-link" href="competitions.html"><img src="img/nav/comp.svg" alt=""><span>Competitions</span></a>
+      <a class="nav-link" href="rankings.html"><img src="img/nav/rank.svg" alt=""><span>Rankings</span></a>
+      <a class="nav-link" href="news.html"><img src="img/nav/news.svg" alt=""><span>News</span></a>
+      <details class="more-menu"><summary class="nav-link"><img src="img/nav/more.svg" alt=""><span>More</span></summary><div class="more-card"><a class="more-option" href="index.html#campus-title"><img class="icn-logo" src="img/logo/icn.svg" alt=""><span>Infinite Campus Next</span></a><a class="more-option" href="regulations.html"><img src="img/ico/rulesico.svg" alt=""><span>Global League regulations</span></a><a class="more-option mobile-register" href="club-register.html"><img src="img/nav/reg.svg" alt=""><span>Club Register</span></a></div></details>
+    </div>
+    <a class="nav-link register" href="club-register.html"><img src="img/nav/reg.svg" alt=""><span>Club Register</span></a>
+  </nav>
+  <main>
+    <figure class="club-banner"><img src="img/clubregbnr.png" alt="Infinite Club Register"></figure>
+    <article class="club-register-content">
+      <h1>Infinite Club Register</h1>
+      <h2>Get Your Club Recognised by Infinite Pro League</h2>
+      <p class="intro">The Infinite Club Register is an initiative to identify and recognise esports and gaming clubs across colleges, universities and communities. Introduce your club, share your experience and help us understand your ambitions for the future of esports.</p>
+      <section class="content-section" aria-labelledby="why-register-title">
+        <h2 id="why-register-title">Why Register?</h2>
+        <ul>
+          <li>Opportunity for recognition by Infinite Pro League.</li>
+          <li>Consideration for future partnership programs and collaborations.</li>
+          <li>Potential opportunities to participate in competitions and community initiatives.</li>
+        </ul>
+      </section>
+      <section class="content-section" aria-labelledby="club-details-title">
+        <h2 id="club-details-title">Tell Us About Your Club</h2>
+        <p>Send us an email introducing your club. Please include:</p>
+        <ul>
+          <li><strong>Club Details:</strong> Name, location, institution and representative.</li>
+          <li><strong>Current Members:</strong> Number of active members and games you focus on.</li>
+          <li><strong>Experience:</strong> Events organised, tournaments participated in and achievements.</li>
+          <li><strong>Expectations:</strong> What you expect from Infinite Pro League and what opportunities or support you seek.</li>
+          <li><strong>Future Goals:</strong> Your plans and ambitions for the club.</li>
+        </ul>
+        <p style="margin-top: 18px">There is no fixed registration form. Share your club profile in your own format.</p>
+        <p><strong>Email:</strong><br><a class="club-email" href="mailto:players@infiniteproleague.com">players@infiniteproleague.com</a></p>
+        <p class="subject"><strong>Subject:</strong> Infinite Club Register – [Club Name]</p>
+        <p class="disclaimer">Registration does not guarantee recognition or partnership. All submissions will be reviewed by Infinite Pro League.</p>
+      </section>
+      <p class="closing-line">Your Club. Your Community. Your Next Level.</p>
+    </article>
+  </main>
+  <footer class="site-footer" id="contact">
+    <div class="site-footer-inner">
+      <div>
+        <a class="site-footer-logo" href="index.html" aria-label="Infinite Pro League home"><img src="img/logo/logo.svg" alt="Infinite Pro League logo"></a>
+        <p>Where Players Become Athletes</p>
+      </div>
+      <div>
+        <h2>Contact</h2>
+        <p>Email: info@infiniteproleague.com</p>
+        <p>Office: GREAT INDIA, Ground Floor, Kollakadavu, Chengannur, Alappuzha District, Kerala, India</p>
+      </div>
+      <div>
+        <h2>Links</h2>
+        <ul>
+          <li><a href="rankings.html">Infinite Rankings</a></li>
+          <li><a href="index.html#partners-title">Partners</a></li>
+          <li><a href="index.html#campus-title">Infinite Campus Next</a></li>
+          <li><a href="regulations.html">Global League Regulations</a></li>
+          <li><a href="club-register.html">Club Register</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Social</h2>
+        <div class="site-footer-social">
+          <a href="#" aria-label="Instagram"><img src="img/ico/insta.svg" alt=""></a>
+          <a href="#" aria-label="YouTube"><img src="img/ico/yt.svg" alt=""></a>
+          <a href="#" aria-label="Discord"><img src="img/ico/dsc.svg" alt=""></a>
+        </div>
+      </div>
+    </div>
+    <div class="site-footer-copy">Copyright &copy; <span id="copyright-year"></span> Infinite Pro League. All rights reserved.</div>
+  </footer>
+  <script>document.querySelector('#copyright-year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

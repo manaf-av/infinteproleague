@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="img/logo/iplfavicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Explore Infinite Pro League competitions and events.">
+  <title>Competitions | Infinite Pro League</title>
+  <style>
+    :root { color-scheme: dark; --rail: #1A1A1A; --gold-end: #C6A160; --rail-width: 112px; }
+    * { box-sizing: border-box; }
+    html { min-width: 320px; background: #000; scroll-behavior: smooth; scroll-padding-top: 92px; }
+    body { min-height: 100vh; margin: 0; background: #000; color: #fff; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .side-nav { position: fixed; z-index: 6; inset: 0 auto 0 0; display: flex; width: var(--rail-width); flex-direction: column; align-items: center; padding: 24px 12px 20px; background: var(--rail); }
+    .brand { display: grid; width: 76px; height: 64px; place-items: center; margin-bottom: 34px; }
+    .brand img { display: block; width: 72px; max-height: 58px; object-fit: contain; }
+    .nav-links { display: flex; width: 100%; flex: 1; flex-direction: column; align-items: center; gap: 9px; }
+    .nav-link { display: flex; width: 84px; min-height: 76px; flex-direction: column; align-items: center; justify-content: center; gap: 8px; border-radius: 8px; color: #bdbdbd; font-size: 10px; font-weight: 600; letter-spacing: .045em; text-decoration: none; transition: background .18s ease, color .18s ease; }
+    .nav-link img { width: 25px; height: 25px; object-fit: contain; opacity: .82; }
+    .nav-link:hover, .nav-link[aria-current="page"] { background: #292929; color: #fff; }
+    .nav-link:hover img, .nav-link[aria-current="page"] img { opacity: 1; }
+    .nav-link.register { min-height: 72px; margin-top: auto; background: #D52B2B; color: #fff; }
+    .nav-link.register:hover { background: #f03a3a; }
+    .nav-link.register img { width: 21px; height: 25px; }
+    .more-menu { position: relative; width: 100%; }
+    .more-menu > summary { list-style: none; cursor: pointer; }
+    .more-menu > summary::-webkit-details-marker { display: none; }
+    .more-card { position: absolute; z-index: 10; left: calc(100% + 12px); bottom: 0; display: none; width: 270px; gap: 6px; padding: 10px; border: 1px solid #343434; border-radius: 10px; background: #181818; box-shadow: 0 14px 36px #0009; }
+    .more-menu:hover .more-card, .more-menu:focus-within .more-card, .more-menu[open] .more-card { display: grid; }
+    .more-option { display: flex; min-height: 54px; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 7px; color: #eee; font-size: 13px; font-weight: 650; line-height: 1.3; text-decoration: none; }
+    .more-option:hover, .more-option:focus-visible { background: #292929; color: #fff; }
+    .more-option img { flex: 0 0 auto; width: 25px; height: 25px; object-fit: contain; }
+    .more-option .icn-logo { width: 72px; height: 30px; filter: brightness(0) invert(1); }
+    .more-option.mobile-register { background: #D52B2B; }
+    .more-option.mobile-register:hover, .more-option.mobile-register:focus-visible { background: #f03a3a; }
+    main { min-height: 100vh; margin-left: var(--rail-width); padding: 52px 24px 40px; }
+    .competition-tabs { position: sticky; z-index: 5; top: 0; display: flex; justify-content: center; gap: clamp(6px, 2vw, 24px); width: calc(100% + 48px); margin: -52px -24px 38px; padding: 14px 18px; border-bottom: 1px solid #303030; background: #101010f2; backdrop-filter: blur(12px); }
+    .competition-tabs a { padding: 9px 12px; border-radius: 5px; color: #c1c1c1; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
+    .competition-tabs a:hover, .competition-tabs a:focus-visible { background: #292929; color: #fff; }
+    .competitions-page { width: min(1060px, 100%); margin: 0 auto; }
+    .eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; color: #d2d2d2; font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; }
+    .eyebrow::before { width: 22px; height: 1px; background: var(--gold-end); content: ""; }
+    h1 { margin: 0 0 42px; font-size: clamp(34px, 5vw, 56px); font-weight: 750; letter-spacing: -.045em; line-height: 1.06; }
+    .event-section { margin: 0 0 54px; scroll-margin-top: 88px; }
+    .section-heading { margin: 0 0 20px; font-size: 23px; letter-spacing: -.025em; }
+    .event-card { display: grid; grid-template-columns: minmax(180px, .72fr) 1.3fr; min-height: 210px; overflow: hidden; border: 1px solid #292929; background: linear-gradient(125deg, #141414, #080808); }
+    .event-art { display: grid; min-height: 210px; place-items: center; padding: 22px; background: #101010; }
+    .event-art img { display: block; width: min(100%, 240px); height: auto; object-fit: contain; }
+    .event-info { display: flex; flex-direction: column; justify-content: center; padding: 28px clamp(22px, 4vw, 46px); }
+    .event-tag { margin: 0 0 11px; color: var(--gold-end); font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    .event-info h3 { margin: 0 0 12px; font-size: clamp(21px, 2.7vw, 30px); line-height: 1.2; letter-spacing: -.035em; }
+    .event-powered { margin: 0 0 20px; color: #aaa; font-size: 13px; }
+    .event-period { margin: 0; color: #e6e6e6; font-size: 13px; font-weight: 650; }
+    .event-link { display: inline-flex; width: fit-content; min-height: 40px; align-items: center; justify-content: center; margin-top: 20px; padding: 0 17px; border: 1px solid var(--gold-end); border-radius: 4px; color: #fff; font-size: 12px; font-weight: 700; text-decoration: none; transition: background .18s ease; }
+    .event-link:hover, .event-link:focus-visible { background: #c6a16022; }
+    .empty-state { margin: 0; padding: 22px 24px; border: 1px solid #252525; color: #888; font-size: 14px; }
+    .site-footer { display: block; width: 100%; margin-top: 48px; border-top: 3px solid var(--gold-end); background: #181818; color: #fff; }
+    .site-footer-inner { display: grid; grid-template-columns: 1.15fr 1.5fr 1fr .8fr; gap: 36px; width: min(1200px, 100%); margin: 0 auto; padding: 44px 32px; }
+    .site-footer-logo img { display: block; width: 300px; max-width: 100%; max-height: 180px; margin-bottom: 16px; object-fit: contain; }
+    .site-footer h2 { margin: 0 0 15px; font-size: 15px; }
+    .site-footer p, .site-footer a { color: #c0c0c0; font-size: 13px; line-height: 1.7; }
+    .site-footer p { margin: 0 0 10px; }
+    .site-footer a { text-decoration: none; }
+    .site-footer a:hover { color: #fff; }
+    .site-footer ul { display: grid; gap: 7px; margin: 0; padding: 0; list-style: none; }
+    .site-footer-social { display: flex; align-items: center; gap: 24px; }
+    .site-footer-social a { display: inline-flex; align-items: center; justify-content: center; color: #fff; }
+    .site-footer-social img { display: block; width: auto; height: 24px; object-fit: contain; filter: invert(1); }
+    .site-footer-copy { padding: 16px 24px; border-top: 1px solid #383838; color: #aaa; font-size: 12px; text-align: center; }
+    @media (max-width: 900px) { .site-footer-inner { grid-template-columns: 1fr 1fr; gap: 28px 18px; } }
+    @media (max-width: 700px) {
+      :root { --rail-width: 0px; }
+      html { scroll-padding-top: 78px; }
+      .side-nav { inset: auto 0 0; width: 100%; height: calc(68px + env(safe-area-inset-bottom)); flex-direction: row; justify-content: center; padding: 5px 7px calc(5px + env(safe-area-inset-bottom)); border-top: 1px solid #303030; }
+      .brand, .side-nav > .nav-link.register { display: none; }
+      .nav-links { flex: initial; width: min(100%, 520px); height: 100%; flex-direction: row; justify-content: space-around; gap: 0; }
+      .nav-link { width: 20%; min-height: 54px; gap: 5px; border-radius: 6px; font-size: 9px; letter-spacing: 0; }
+      .nav-link img { width: 20px; height: 20px; }
+
+      .more-menu { position: static; flex: 1; min-width: 0; width: auto; }
+      .more-menu > summary { width: 100%; min-height: 54px; gap: 5px; font-size: 9px; letter-spacing: 0; }
+      .more-card { position: fixed; right: 12px; bottom: calc(76px + env(safe-area-inset-bottom)); left: 12px; width: auto; }
+      main { margin-left: 0; padding: 0 16px calc(90px + env(safe-area-inset-bottom)); }
+      .competition-tabs { top: 0; justify-content: space-between; gap: 0; width: calc(100% + 32px); margin: 0 -16px 30px; padding: 10px 9px; }
+      .competition-tabs a { padding: 9px 7px; font-size: 9px; letter-spacing: .04em; }
+      .competitions-page { padding: 0 2px; }
+      h1 { margin-bottom: 32px; }
+      .event-card { grid-template-columns: 1fr; }
+      .event-art { min-height: 160px; }
+      .event-art img { width: min(220px, 70%); }
+      .event-info { padding: 23px 20px; }
+      .event-section { margin-bottom: 42px; scroll-margin-top: 76px; }
+      .site-footer-inner { padding: 34px 20px; }
+      .site-footer-copy { padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
+    }
+    @media (min-width: 701px) and (max-height: 650px) { .side-nav { padding-top: 12px; padding-bottom: 12px; } .brand { margin-bottom: 10px; } .nav-links { gap: 0; } .nav-link { min-height: 62px; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
+      @media (max-width: 900px) {
+      :root { --rail-width: 0px; }
+      .side-nav { inset: auto 0 0; width: 100%; height: calc(68px + env(safe-area-inset-bottom)); flex-direction: row; justify-content: center; padding: 5px 7px calc(5px + env(safe-area-inset-bottom)); border-top: 1px solid #303030; }
+      .brand, .side-nav > .nav-link.register { display: none; }
+      .nav-links { flex: initial; width: min(100%, 520px); height: 100%; flex-direction: row; align-items: center; justify-content: space-around; gap: 0; }
+      .nav-links > a[href*="news.html"] { display: none; }
+      .nav-link { width: 25%; min-height: 54px; gap: 5px; border-radius: 6px; font-size: 9px; letter-spacing: 0; }
+      .nav-link img { width: 20px; height: 20px; }
+      .more-menu { position: static; flex: 1; min-width: 0; width: auto; }
+      .more-menu > summary { width: 100%; min-height: 54px; gap: 5px; font-size: 9px; letter-spacing: 0; }
+      .more-card { position: fixed; right: 12px; bottom: calc(76px + env(safe-area-inset-bottom)); left: 12px; width: auto; }
+      main { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="side-nav" aria-label="Main navigation">
+    <a class="brand" href="index.html" aria-label="Infinite Pro League home"><img src="img/nav/inpllg-nav.png" alt="Infinite Pro League"></a>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html"><img src="img/nav/home.svg" alt=""><span>Home</span></a>
+      <a class="nav-link" href="competitions.html" aria-current="page"><img src="img/nav/comp.svg" alt=""><span>Competitions</span></a>
+      <a class="nav-link" href="rankings.html"><img src="img/nav/rank.svg" alt=""><span>Rankings</span></a>
+      <a class="nav-link" href="news.html"><img src="img/nav/news.svg" alt=""><span>News</span></a>
+      <details class="more-menu"><summary class="nav-link"><img src="img/nav/more.svg" alt=""><span>More</span></summary><div class="more-card"><a class="more-option" href="index.html#campus-title"><img class="icn-logo" src="img/logo/icn.svg" alt=""><span>Infinite Campus Next</span></a><a class="more-option" href="regulations.html"><img src="img/ico/rulesico.svg" alt=""><span>Global League regulations</span></a><a class="more-option mobile-register" href="club-register.html"><img src="img/nav/reg.svg" alt=""><span>Club Register</span></a></div></details>
+    </div>
+    <a class="nav-link register" href="club-register.html"><img src="img/nav/reg.svg" alt=""><span>Club Register</span></a>
+  </nav>
+  <main>
+    <nav class="competition-tabs" aria-label="Competition sections">
+      <a href="#all">All</a>
+      <a href="#upcoming">Upcoming</a>
+      <a href="#ongoing">Ongoing</a>
+      <a href="#live">Live</a>
+      <a href="#completed">Completed</a>
+    </nav>
+    <div class="competitions-page">
+      <p class="eyebrow">Infinite Pro League</p>
+      <h1>Competitions</h1>
+      <section class="event-section" id="all" aria-labelledby="all-title">
+        <h2 class="section-heading" id="all-title">All Competitions</h2>
+        <article class="event-card">
+          <div class="event-art"><img src="img/comp/comp-lte1.png" alt="Infinite Pro League Launch Tour"></div>
+          <div class="event-info">
+            <p class="event-tag">Completed Event</p>
+            <h3>Infinite Pro League Launch Tour</h3>
+            <p class="event-powered">Powered By Revolution Games - Kochi TechCon'26</p>
+            <p class="event-period">31st August - 3rd September 2026</p>
+            <a class="event-link" href="news/article.html?story=kochi-launch-tour">Learn more</a>
+          </div>
+        </article>
+      </section>
+      <section class="event-section" id="upcoming" aria-labelledby="upcoming-title">
+        <h2 class="section-heading" id="upcoming-title">Upcoming</h2>
+        <p class="empty-state">No upcoming competitions at the moment.</p>
+      </section>
+      <section class="event-section" id="ongoing" aria-labelledby="ongoing-title">
+        <h2 class="section-heading" id="ongoing-title">Ongoing</h2>
+        <p class="empty-state">No competitions are currently ongoing.</p>
+      </section>
+      <section class="event-section" id="live" aria-labelledby="live-title">
+        <h2 class="section-heading" id="live-title">Live</h2>
+        <p class="empty-state">There are no live competitions right now.</p>
+      </section>
+      <section class="event-section" id="completed" aria-labelledby="completed-title">
+        <h2 class="section-heading" id="completed-title">Completed</h2>
+        <article class="event-card">
+          <div class="event-art"><img src="img/comp/comp-lte1.png" alt="Infinite Pro League Launch Tour"></div>
+          <div class="event-info">
+            <p class="event-tag">Completed Event</p>
+            <h3>Infinite Pro League Launch Tour</h3>
+            <p class="event-powered">Powered By Revolution Games - Kochi TechCon'26</p>
+            <p class="event-period">31st August - 3rd September 2026</p>
+            <a class="event-link" href="news/article.html?story=kochi-launch-tour">Learn more</a>
+          </div>
+        </article>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer" id="contact">
+    <div class="site-footer-inner">
+      <div>
+        <a class="site-footer-logo" href="index.html" aria-label="Infinite Pro League home"><img src="img/logo/logo.svg" alt="Infinite Pro League logo"></a>
+        <p>Where Players Become Athletes</p>
+      </div>
+      <div>
+        <h2>Contact</h2>
+        <p>Email: info@infiniteproleague.com</p>
+        <p>Office: GREAT INDIA, Ground Floor, Kollakadavu, Chengannur, Alappuzha District, Kerala, India</p>
+      </div>
+      <div>
+        <h2>Links</h2>
+        <ul>
+          <li><a href="rankings.html">Infinite Rankings</a></li>
+          <li><a href="index.html#partners-title">Partners</a></li>
+          <li><a href="index.html#campus-title">Infinite Campus Next</a></li>
+          <li><a href="regulations.html">Global League Regulations</a></li>
+          <li><a href="club-register.html">Club Register</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Social</h2>
+        <div class="site-footer-social">
+          <a href="#" aria-label="Instagram"><img src="img/ico/insta.svg" alt=""></a>
+          <a href="#" aria-label="YouTube"><img src="img/ico/yt.svg" alt=""></a>
+          <a href="#" aria-label="Discord"><img src="img/ico/dsc.svg" alt=""></a>
+        </div>
+      </div>
+    </div>
+    <div class="site-footer-copy">Copyright &copy; <span id="copyright-year"></span> Infinite Pro League. All rights reserved.</div>
+  </footer>
+  <script>document.querySelector('#copyright-year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
