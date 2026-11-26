@@ -15,17 +15,19 @@
 
   async function loadComponent(placeholder) {
     const componentName = placeholder.dataset.component;
-    const response = await fetch(new URL(`components/${componentName}.html`, siteRoot));
+    const response = await fetch(new URL(`components/${componentName}.html`, siteRoot), { cache: "no-cache" });
     if (!response.ok) throw new Error(`Unable to load ${componentName} component (${response.status})`);
     const template = document.createElement("template");
     template.innerHTML = await response.text();
     resolveComponentUrls(template.content);
 
-    const component = template.content.firstElementChild;
+    const component = componentName === "navbar"
+      ? template.content.querySelector("nav.side-nav")
+      : componentName === "footer"
+        ? template.content.querySelector("footer.site-footer")
+        : template.content.firstElementChild;
+    if (!component) throw new Error(`Unable to find root element for ${componentName} component`);
     if (componentName === "navbar") {
-      const variant = placeholder.dataset.navVariant;
-      if (variant) component.dataset.navVariant = variant;
-
       const pagePath = decodeURIComponent(window.location.pathname)
         .slice(siteRoot.pathname.length)
         .replace(/\/+$/, "");

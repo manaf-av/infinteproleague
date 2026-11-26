@@ -74,9 +74,6 @@
 .more-option .icn-logo { width: 72px; height: 30px; filter: brightness(0) invert(1); }
 .more-option.mobile-register { background: #d52b2b; }
 .more-option.mobile-register:hover, .more-option.mobile-register:focus-visible { background: #f03a3a; }
-.side-nav[data-nav-variant="verify"] .more-option[data-nav-key="campus"],
-.side-nav[data-nav-variant="verify"] > .nav-link.register { display: none; }
-
 .site-footer { display: block; width: 100%; margin-top: 48px; border-top: 3px solid #c6a160; background: #181818; color: #fff; }
 .site-footer-inner { display: grid; grid-template-columns: 1.15fr 1.5fr 1fr .8fr; gap: 36px; width: min(1200px, 100%); margin: 0 auto; padding: 44px 32px; }
 .site-footer-logo img { display: block; width: 300px; max-width: 100%; max-height: 180px; margin-bottom: 16px; object-fit: contain; }
@@ -104,7 +101,7 @@
   }
   .brand, .side-nav > .nav-link.register { display: none; }
   .nav-links { flex: initial; width: min(100%, 520px); height: 100%; flex-direction: row; align-items: center; justify-content: space-around; gap: 0; }
-  .nav-links > a[data-nav-key="news"] { display: none; }
+  .nav-links > a.nav-link { flex: 1; width: auto; }
   .nav-link { width: 25%; min-height: 54px; gap: 5px; border-radius: 6px; font-size: 9px; letter-spacing: 0; }
   .nav-link img { width: 20px; height: 20px; }
   .more-menu { position: static; flex: 1; min-width: 0; width: auto; }
