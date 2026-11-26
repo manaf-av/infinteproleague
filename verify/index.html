@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Verify an Infinite Pro League player record.">
+  <title>Player Verification | Infinite Pro League</title>
+  <style>
+    :root { color-scheme: dark; --gold: #C6A160; --rail: #1A1A1A; }
+    * { box-sizing: border-box; }
+    html { min-width: 320px; background: #000; }
+    body { min-height: 100vh; margin: 0; background: #000; color: #fff; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    main { min-height: 100vh; margin-left: var(--rail-width); padding: 52px 24px 70px; }
+    .verify-page { width: min(820px, 100%); margin: 0 auto; }
+    .league-logo { display: block; width: min(290px, 72%); max-height: 100px; margin: 0 auto 24px; object-fit: contain; }
+    .eyebrow { margin: 0 0 9px; color: var(--gold); font-size: 11px; font-weight: 750; letter-spacing: .2em; text-align: center; text-transform: uppercase; }
+    h1 { margin: 0; font-size: clamp(30px, 5vw, 48px); letter-spacing: -.045em; text-align: center; }
+    .intro { margin: 12px 0 30px; color: #aaa; font-size: 14px; text-align: center; }
+    .search-form { display: flex; gap: 10px; padding: 8px; border: 1px solid #333; border-radius: 8px; background: #111; }
+    .search-form input { min-width: 0; flex: 1; padding: 0 14px; border: 0; outline: 0; background: transparent; color: #fff; font: inherit; font-size: 15px; }
+    .search-form input::placeholder { color: #777; }
+    .search-form:focus-within { border-color: var(--gold); }
+    .search-form button { min-height: 46px; padding: 0 21px; border: 0; border-radius: 5px; background: var(--gold); color: #111; font-size: 13px; font-weight: 750; cursor: pointer; }
+    .search-form button:hover { background: #dbb876; }
+    .result { margin-top: 20px; }
+    .empty-result { margin: 0; padding: 19px; border: 1px solid #292929; border-radius: 7px; color: #d6d6d6; font-size: 15px; text-align: center; }
+    .record { overflow: hidden; border: 1px solid #343434; border-radius: 9px; background: linear-gradient(145deg,#141414,#090909); }
+    .record-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 19px 22px; border-bottom: 1px solid #303030; }
+    .record-heading h2 { margin: 0; font-size: 18px; }
+    .status { display: inline-flex; align-items: center; gap: 8px; color: #a8d6a8; font-size: 11px; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; }
+    .status::before { width: 8px; height: 8px; border-radius: 50%; background: #70bf70; content: ""; }
+    .record-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); }
+    .field { min-width: 0; padding: 17px 22px; border-bottom: 1px solid #242424; }
+    .field:nth-child(odd) { border-right: 1px solid #242424; }
+    .field-label { display: block; margin-bottom: 7px; color: #898989; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .field-value { display: block; overflow-wrap: anywhere; color: #f3f3f3; font-size: 15px; font-weight: 600; }
+    .tournament { margin-top: 28px; padding: 20px 22px; border-left: 2px solid var(--gold); background: #101010; }
+    .tournament[hidden] { display: none; }
+    .tournament h2 { margin: 0 0 13px; font-size: 14px; }
+    .tournament p { margin: 7px 0 0; color: #bbb; font-size: 13px; line-height: 1.55; }
+    @media (max-width: 900px) {
+      
+      main { margin-left: 0; padding: 32px 16px calc(96px + env(safe-area-inset-bottom)); }
+      .intro { margin-bottom: 23px; }
+      .search-form { gap: 5px; }
+      .search-form input { padding: 0 8px; font-size: 13px; }
+      .search-form button { padding: 0 14px; }
+      .record-heading, .field { padding-right: 16px; padding-left: 16px; }
+      .field-value { font-size: 13px; }
+      .tournament { padding: 17px; }
+    }
+    @media (max-width: 420px) { .record-grid { grid-template-columns: 1fr; } .field:nth-child(odd) { border-right: 0; } }
+  </style>
+  <link rel="stylesheet" href="../css/site-components.css">
+</head>
+<body>
+  <div data-component="navbar" data-nav-variant="verify"></div>
+  <main>
+    <section class="verify-page" aria-labelledby="page-title">
+      <img class="league-logo" src="../img/logo/logo.svg" alt="Infinite Pro League">
+      <p class="eyebrow">Player credential lookup</p>
+      <h1 id="page-title">Player Verification</h1>
+      <p class="intro">Enter the complete Verification ID to view an official player record.</p>
+      <form class="search-form" id="verify-form" role="search">
+        <input id="verification-id" name="id" type="text" placeholder="IPL-AB-C1-2345" aria-label="Complete Verification ID" autocomplete="off" spellcheck="false">
+        <button type="submit">Verify Player</button>
+      </form>
+      <div class="result" id="result" aria-live="polite"></div>
+      <section class="tournament" id="tournament-details" aria-labelledby="tournament-title" hidden>
+        <h2 id="tournament-title">Tournament Details</h2>
+        <p><strong>Tournament:</strong> Infinite Pro League Launch Tour Kochi TechCon'26 Powered by Revolution Games</p>
+        <p><strong>Game:</strong> eFootball</p>
+        <p><strong>Event Date:</strong> 3rd September, 2026</p>
+      </section>
+    </section>
+  </main>
+  <script>
+    const form = document.querySelector('#verify-form');
+    const input = document.querySelector('#verification-id');
+    const result = document.querySelector('#result');
+    const tournament = document.querySelector('#tournament-details');
+    const fields = [
+      ['Verification ID', 'verificationId'], ['Full Name', 'fullName'],
+      ['In-game Name', 'inGameName'], ['Email Address', 'email'],
+      ['Qualification Status', 'qualificationStatus'], ['Final Player Position', 'position']
+    ];
+
+    function showNoRecord() {
+      tournament.hidden = true;
+      result.replaceChildren();
+      const message = document.createElement('p');
+      message.className = 'empty-result';
+      message.textContent = 'No Record Found';
+      result.append(message);
+    }
+
+    function showRecord(player) {
+      tournament.hidden = false;
+      result.replaceChildren();
+      const card = document.createElement('article');
+      card.className = 'record';
+      const heading = document.createElement('div');
+      heading.className = 'record-heading';
+      const title = document.createElement('h2');
+      title.textContent = 'Player Record';
+      const status = document.createElement('span');
+      status.className = 'status';
+      status.textContent = 'Verified';
+      heading.append(title, status);
+      const grid = document.createElement('div');
+      grid.className = 'record-grid';
+      for (const [label, key] of fields) {
+        const field = document.createElement('div');
+        field.className = 'field';
+        const caption = document.createElement('span');
+        caption.className = 'field-label';
+        caption.textContent = label;
+        const value = document.createElement('span');
+        value.className = 'field-value';
+        value.textContent = player[key] || '—';
+        field.append(caption, value);
+        grid.append(field);
+      }
+      card.append(heading, grid);
+      result.append(card);
+    }
+
+    async function verify(id) {
+      input.value = id;
+      if (!id) { showNoRecord(); return; }
+      try {
+        const response = await fetch('./records.json');
+        if (!response.ok) throw new Error('Unable to load player records');
+        const players = await response.json();
+        const player = players.find(entry => entry.verificationId === id);
+        if (player) showRecord(player); else showNoRecord();
+      } catch {
+        showNoRecord();
+      }
+    }
+
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      const id = input.value;
+      const url = new URL(window.location.href);
+      if (id) url.searchParams.set('id', id); else url.searchParams.delete('id');
+      history.replaceState(null, '', url);
+      verify(id);
+    });
+
+    const initialId = new URLSearchParams(window.location.search).get('id') || '';
+    if (initialId) verify(initialId); else showNoRecord();
+  </script>
+  <script src="../js/component-loader.js"></script>
+</body>
+</html>

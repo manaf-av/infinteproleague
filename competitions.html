@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="img/logo/iplfavicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Explore Infinite Pro League competitions and events.">
+  <title>Competitions | Infinite Pro League</title>
+  <style>
+    :root { color-scheme: dark; --rail: #1A1A1A; --gold-end: #C6A160; }
+    * { box-sizing: border-box; }
+    html { min-width: 320px; background: #000; scroll-behavior: smooth; scroll-padding-top: 92px; }
+    body { min-height: 100vh; margin: 0; background: #000; color: #fff; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    main { min-height: 100vh; margin-left: var(--rail-width); padding: 52px 24px 40px; }
+    .competition-tabs { position: sticky; z-index: 5; top: 0; display: flex; justify-content: center; gap: clamp(6px, 2vw, 24px); width: calc(100% + 48px); margin: -52px -24px 38px; padding: 14px 18px; border-bottom: 1px solid #303030; background: #101010f2; backdrop-filter: blur(12px); }
+    .competition-tabs a { padding: 9px 12px; border-radius: 5px; color: #c1c1c1; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
+    .competition-tabs a:hover, .competition-tabs a:focus-visible { background: #292929; color: #fff; }
+    .competitions-page { width: min(1060px, 100%); margin: 0 auto; }
+    .eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; color: #d2d2d2; font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; }
+    .eyebrow::before { width: 22px; height: 1px; background: var(--gold-end); content: ""; }
+    h1 { margin: 0 0 42px; font-size: clamp(34px, 5vw, 56px); font-weight: 750; letter-spacing: -.045em; line-height: 1.06; }
+    .event-section { margin: 0 0 54px; scroll-margin-top: 88px; }
+    .section-heading { margin: 0 0 20px; font-size: 23px; letter-spacing: -.025em; }
+    .event-card { display: grid; grid-template-columns: minmax(180px, .72fr) 1.3fr; min-height: 210px; overflow: hidden; border: 1px solid #292929; background: linear-gradient(125deg, #141414, #080808); }
+    .event-art { display: grid; min-height: 210px; place-items: center; padding: 22px; background: #101010; }
+    .event-art img { display: block; width: min(100%, 240px); height: auto; object-fit: contain; }
+    .event-info { display: flex; flex-direction: column; justify-content: center; padding: 28px clamp(22px, 4vw, 46px); }
+    .event-tag { margin: 0 0 11px; color: var(--gold-end); font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    .event-info h3 { margin: 0 0 12px; font-size: clamp(21px, 2.7vw, 30px); line-height: 1.2; letter-spacing: -.035em; }
+    .event-powered { margin: 0 0 20px; color: #aaa; font-size: 13px; }
+    .event-period { margin: 0; color: #e6e6e6; font-size: 13px; font-weight: 650; }
+    .event-link { display: inline-flex; width: fit-content; min-height: 40px; align-items: center; justify-content: center; margin-top: 20px; padding: 0 17px; border: 1px solid var(--gold-end); border-radius: 4px; color: #fff; font-size: 12px; font-weight: 700; text-decoration: none; transition: background .18s ease; }
+    .event-link:hover, .event-link:focus-visible { background: #c6a16022; }
+    .empty-state { margin: 0; padding: 22px 24px; border: 1px solid #252525; color: #888; font-size: 14px; }
+@media (max-width: 700px) {
+      
+      html { scroll-padding-top: 78px; }
+      main { margin-left: 0; padding: 0 16px calc(90px + env(safe-area-inset-bottom)); }
+      .competition-tabs { top: 0; justify-content: space-between; gap: 0; width: calc(100% + 32px); margin: 0 -16px 30px; padding: 10px 9px; }
+      .competition-tabs a { padding: 9px 7px; font-size: 9px; letter-spacing: .04em; }
+      .competitions-page { padding: 0 2px; }
+      h1 { margin-bottom: 32px; }
+      .event-card { grid-template-columns: 1fr; }
+      .event-art { min-height: 160px; }
+      .event-art img { width: min(220px, 70%); }
+      .event-info { padding: 23px 20px; }
+      .event-section { margin-bottom: 42px; scroll-margin-top: 76px; }
+    }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
+      @media (max-width: 900px) {
+      
+      main { margin-left: 0; }
+    }
+  </style>
+  <link rel="stylesheet" href="css/site-components.css">
+</head>
+<body>
+  <div data-component="navbar"></div>
+  <main>
+    <nav class="competition-tabs" aria-label="Competition sections">
+      <a href="#all">All</a>
+      <a href="#upcoming">Upcoming</a>
+      <a href="#ongoing">Ongoing</a>
+      <a href="#live">Live</a>
+      <a href="#completed">Completed</a>
+    </nav>
+    <div class="competitions-page">
+      <p class="eyebrow">Infinite Pro League</p>
+      <h1>Competitions</h1>
+      <section class="event-section" id="all" aria-labelledby="all-title">
+        <h2 class="section-heading" id="all-title">All Competitions</h2>
+        <article class="event-card">
+          <div class="event-art"><img src="img/comp/comp-lte1.png" alt="Infinite Pro League Launch Tour"></div>
+          <div class="event-info">
+            <p class="event-tag">Completed</p>
+            <h3>Infinite Pro League Launch Tour</h3>
+            <p class="event-powered">Powered By Revolution Games - Kochi TechCon'26</p>
+            <p class="event-period">31st August - 3rd September 2026</p>
+            <a class="event-link" href="news/article.html?story=kochi-launch-tour">Learn more</a>
+          </div>
+        </article>
+      </section>
+      <section class="event-section" id="upcoming" aria-labelledby="upcoming-title">
+        <h2 class="section-heading" id="upcoming-title">Upcoming</h2>
+        <p class="empty-state">No upcoming competitions at the moment.</p>
+      </section>
+      <section class="event-section" id="live" aria-labelledby="live-title">
+        <h2 class="section-heading" id="live-title">Live</h2>
+        <p class="empty-state">There are no live competitions right now.</p>
+      </section>
+      <section class="event-section" id="completed" aria-labelledby="completed-title">
+        <h2 class="section-heading" id="completed-title">Completed</h2>
+        <article class="event-card">
+          <div class="event-art"><img src="img/comp/comp-lte1.png" alt="Infinite Pro League Launch Tour"></div>
+          <div class="event-info">
+            <p class="event-tag">Completed</p>
+            <h3>Infinite Pro League Launch Tour</h3>
+            <p class="event-powered">Powered By Revolution Games - Kochi TechCon'26</p>
+            <p class="event-period">31st August - 3rd September 2026</p>
+            <a class="event-link" href="news/article.html?story=kochi-launch-tour">Learn more</a>
+          </div>
+        </article>
+      </section>
+    </div>
+  </main>
+  <div data-component="footer"></div>
+  <script></script>
+  <script src="js/component-loader.js"></script>
+</body>
+</html>

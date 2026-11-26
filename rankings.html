@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="img/logo/iplfavicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Current Infinite Pro League player standings.">
+  <title>Current Standings | Infinite Pro League</title>
+  <style>
+    :root { color-scheme: dark; --rail: #1A1A1A; --gold-end: #C6A160; }
+    * { box-sizing: border-box; }
+    html { min-width: 320px; background: #000; }
+    body { min-height: 100vh; margin: 0; background: #000; color: #fff; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    main { min-height: 100vh; margin-left: var(--rail-width); padding: 52px 24px 40px; }
+    .rankings-page { width: min(1000px, 100%); margin: 0 auto; }
+    .rankings-logo { display: block; width: min(320px, 70%); height: auto; margin: 0 auto 28px; object-fit: contain; }
+    h1 { margin: 0 0 10px; font-size: clamp(32px, 5vw, 52px); font-weight: 750; letter-spacing: -.045em; text-align: center; }
+    .updated { margin: 0 0 30px; color: #929292; font-size: 13px; text-align: center; }
+    .table-wrap { overflow-x: auto; border: 1px solid #292929; border-radius: 8px; }
+    table { width: 100%; border-collapse: collapse; text-align: left; }
+    th, td { padding: 15px 20px; border-bottom: 1px solid #292929; }
+    th { background: #151515; color: var(--gold-end); font-size: 11px; font-weight: 700; letter-spacing: .14em; }
+    td { color: #e5e5e5; font-size: 14px; }
+    tbody tr:hover { background: #111; }
+    tbody tr:last-child td { border-bottom: 0; }
+    td:first-child { width: 24%; color: var(--gold-end); font-weight: 700; }
+    td:last-child { width: 25%; font-variant-numeric: tabular-nums; }
+    .qualification-note { margin: 22px 0 0; padding: 17px 20px; border-left: 2px solid var(--gold-end); background: #101010; color: #bdbdbd; font-size: 13px; line-height: 1.7; }
+@media (max-width: 700px) {
+      
+      main { margin-left: 0; padding: 32px 16px calc(90px + env(safe-area-inset-bottom)); }
+      .rankings-logo { width: min(250px, 75%); margin-bottom: 22px; }
+      .updated { margin-bottom: 22px; }
+      th, td { padding: 13px 12px; font-size: 12px; }
+      th { font-size: 10px; }
+      .qualification-note { padding: 14px 15px; font-size: 12px; }
+    }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
+      @media (max-width: 900px) {
+      
+      main { margin-left: 0; }
+    }
+  </style>
+  <link rel="stylesheet" href="css/site-components.css">
+</head>
+<body>
+  <div data-component="navbar"></div>
+  <main>
+    <section class="rankings-page" aria-labelledby="standings-title">
+      <img class="rankings-logo" src="img/logo/infrankings.svg" alt="Infinite Rankings">
+      <h1 id="standings-title">eFootball Current Standings</h1>
+      <p class="updated">Last Updated 21 September 2026</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">RANK</th><th scope="col">IGN</th><th scope="col">POINTS</th></tr></thead>
+          <tbody>
+            <tr><td>#1</td><td>Joel-TFC</td><td>2.510</td></tr>
+            <tr><td>#2</td><td>SPDY_GAMING</td><td>2.379</td></tr>
+            <tr><td>#3</td><td>PEAK_HANiY-TsK</td><td>2.193</td></tr>
+            <tr><td>#4</td><td>RAAEZ_TWB_</td><td>2.016</td></tr>
+            <tr><td>#5</td><td>Yazeen_MAC</td><td>1.881</td></tr>
+            <tr><td>#6</td><td>inshalllasuiii</td><td>1.880</td></tr>
+            <tr><td>#7</td><td>SCOFIELD-MAC</td><td>1.871</td></tr>
+            <tr><td>#8</td><td>GLiTcH-_-</td><td>1.870</td></tr>
+            <tr><td>#9</td><td>Shiyas-TFC</td><td>1.306</td></tr>
+            <tr><td>#10</td><td>SPN-PULLI</td><td>1.151</td></tr>
+            <tr><td>#11</td><td>MAC_CHECHU</td><td>1.150</td></tr>
+            <tr><td>#12</td><td>Believer_07</td><td>1.149</td></tr>
+            <tr><td>#13</td><td>Queenyx Gaming</td><td>0.721</td></tr>
+            <tr><td>#14</td><td>Ajo-CMD</td><td>0.579</td></tr>
+            <tr><td>#15</td><td>RICCO7-PWK</td><td>0.578</td></tr>
+            <tr><td>#16</td><td>-u__u-</td><td>0.577</td></tr>
+            <tr><td>#17</td><td>KiRAN-TSK</td><td>0.575</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="qualification-note">The minimum requirement to be listed in Infinite Rankings is to win at least 1 match at a LAN event or an event of similar value.</p>
+    </section>
+  </main>
+  <div data-component="footer"></div>
+  <script></script>
+  <script src="js/component-loader.js"></script>
+</body>
+</html>
